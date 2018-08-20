@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抖一抖函封装</title>
+    <script src="doMove.js"></script>
+    <style>
+        #img{
+            width: 200px;height: 200px;position: absolute;top: 60px;left: 500px;
+        }
+    </style>
+
+</head>
+<body>
+<img id="img" src="../img/3.png" alt="">
+<script>
+    var Img=document.getElementById('img');
+    Img.onclick=function(){
+        shake(Img,'left',function(){
+           shake(Img,'top');
+        });
+    }
+    function shake(obj,attr,endFn){
+        var poi=parseInt(getStyle(obj,attr));
+        var num=0;
+        var arr=[];
+        for (var i=20;i>0;i-=2){
+            arr.push(i,-i);//创建抖的频率数组
+        }
+        arr.push(0);
+        clearInterval(obj.shake);
+        obj.shake=setInterval(function () {
+            obj.style[attr]=poi+arr[num]+'px';
+            num++;
+            if (num===arr.length){
+                clearInterval(obj.shake);
+                endFn && endFn();
+            }
+
+        },80)
+    }
+</script>
+</body>
+</html>

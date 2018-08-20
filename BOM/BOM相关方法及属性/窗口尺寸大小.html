@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>窗口尺寸大小</title>
+    <style>
+        body{
+        height:2000px;
+            width:2000px;
+        }
+        .div1{
+            width:100px;height:100px;background: red;
+            padding: 10px;
+            border: 1px solid pink;margin:20px;
+        }
+        .div2{
+            width:100px;height:200px;background: blue;
+        }
+    </style>
+</head>
+<body style="height:2000px;">
+<div class="div1"><div class="div2"></div></div>
+<script>
+
+    // 滚动条滚动距离
+    document.body.scrollTop /* 【scrollLeft】*/
+    alert(document.body.scrollTop);
+    // alert(document.documentElement.scrollLeft);
+
+    /*内容高
+    *元素.scrollHeight(Width);不加边框
+    */
+
+    /*文档高：elem.offsetWidth /  elem.offsetHeight (计算边框 加padding )*/
+    var oDiv=document.getElementsByTagName('div')[0];
+    alert(oDiv.offsetHeight);//122px
+</script>
+</body>
+</html>

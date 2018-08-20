@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>升序（降序）排列</title>
+</head>
+<body>
+<script>
+    var num=[1,20,50,400,1000,60];
+  /*  num.push(700);
+    num.pop();
+    num.shift();//移出数组第一项
+    num.unshift(90,80);//数组前端添加任意项
+    num.reverse();//逆序排列*/
+    function compare(num1,num2){
+       if (num1<num2){
+           //return -1;升序排列
+           return 1;//降序排列
+       } else if (num1>num2){
+           //return 1;升序排列
+           return -1;//降序排列
+       } else{
+           return 0;
+       }
+    }
+    num.sort(compare);
+    document.write('由大到小依次是：'+num);
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //自定义事件：主要是跟函数有关系，就是让函数能够具备事件的某些特性
+/*function show() {
+    alert(1);
+}*/
+window.addEventListener('click',function () {
+    alert(1);
+},false);
+window.addEventListener('click',function () {
+        alert(2);
+},false);
+window.addEventListener('click',function () {
+        alert(3);
+},false)
+    click();//主动触发自定义事件
+</script>
+</body>
+</html>

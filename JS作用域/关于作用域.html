@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var color='red';
+    function fn1() {
+        var color1='yellow';
+        function fn2() {
+            var color2=color1;
+            color1=color;
+            color=color2;
+            alert(color);
+            return fn2;
+        }
+        fn2();
+    }
+     fn1();
+</script>
+</body>
+</html>

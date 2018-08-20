@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sort排序</title>
+</head>
+<body>
+<script>
+    var arr=[2,34,53,32,81,9];
+    arr.sort(function (a,b) {
+        //return a-b;//由小到大
+        return b-a;//由大到小
+    })
+    alert(arr);
+
+    var arr1=['50px','35px','200px','6221px'];
+    arr1.sort(function (a,b) {
+        return parseInt(a)-parseInt(b);
+    })
+    alert(arr1);
+</script>
+</body>
+</html>

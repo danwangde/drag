@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   /* fn1(1,2,3);//实参
+    function fn1(a,b,c) {//形参
+        //alert(arguments[0]);
+    }
+   alert(sum(1,2,3));
+    function sum(a,b,c){
+        return a+b+c;
+    }*/
+    
+   //当函数的参数无法确定的时候，用arguments
+  /* alert(sum(1,2,3,4))
+    alert(sum(20,2,3,4,5));
+    function sum() {
+        var n=0;
+        for (var i=0;i<arguments.length;i++){
+            n+=arguments[i];
+        }
+        return n;
+    }*/
+
+   alert(sum(1,2,3,4))
+    alert(sum(20,2,3,4,5));
+    function sum() {
+        var n=arguments[0];
+        for (var i=1;i<arguments.length;i++){
+            n-=arguments[i];
+        }
+        return n;
+    }
+</script>
+</body>
+</html>

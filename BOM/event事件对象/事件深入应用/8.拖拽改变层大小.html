@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽改变层大小</title>
+    <style>
+        #img1{width:200px;height:200px;background: red;position: absolute;left:500px;
+        top:100px;border: 20px solid pink;}
+    </style>
+</head>
+<body>
+<img id="img1" src="img/12.jpeg" alt="">
+<script>
+    var Img=document.getElementById('img1');
+    var b='';
+    Img.onmousedown=function (ev) {
+       var ev=ev || event;
+       var disX=ev.clientX;
+       var disY=ev.clientY;
+       var disL=this.offsetLeft;
+       var disT=this.offsetTop;
+       var disH=this.offsetHeight;
+       var disW=this.offsetWidth;
+       //判断：如果鼠标按下位置的x值大于图片距离左边的距离+图片的宽-20。为右边
+       if (disX>disL+disW-20) {
+           b='right';
+       }
+       if(disX<disL+20){
+           b='left';
+       }
+       if(disY<disT+20){
+           //alert('top');
+           b='top';
+       }
+       if (disY>disT+disH-20){
+           //alert('bottom');
+           b='bottom';
+       }
+       
+       document.onmousemove=function (ev) {
+           var ev=ev || event;
+           switch(b){
+               case 'left':
+                   Img.style.width=disW-(ev.clientX-disX)+'px';
+                   Img.style.left=disL+(ev.clientX-disX)+'px';
+                   break;
+               case 'right':
+                   Img.style.width=disW+(ev.clientX-disX)+'px';
+                   break;
+               case 'top':
+                   Img.style.height=disH-(ev.clientY-disY)+'px';
+                   Img.style.top=disT+(ev.clientY-disY)+'px';
+                   Img
+                   break;
+               case 'bottom':
+                   Img.style.height=disH+(ev.clientY-disY)+'px';
+           }
+
+
+       }
+        document.onmouseup=function () {
+            document.onmousemove=document.onmouseup=null;
+       }
+       return false;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大鸡腿</title>
+</head>
+<body>
+<script>
+    /*var str='';
+    function fn1(){
+        var a='大鸡腿儿~';
+        str=a;
+    }
+    fn1();
+    alert(str);*/
+
+
+    /*function fn2() {
+        var a='99999克拉钻石';
+        fn3(a);
+    }
+    fn2();
+    function fn3(c) {
+        alert(c);
+    }*/
+
+    function fn2(fn) {
+        var a='99999克拉钻石';
+        fn(a);
+    }
+    fn2(fn3);//这里的fn3不能写成fn3(),不然像是直接调用fn3了
+    //函数fn3作为参数传进函数fn2
+    function fn3(c) {
+
+        alert(c);
+    }
+
+
+</script>
+
+</body>
+</html>

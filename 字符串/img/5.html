@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p{
+            padding: 0;
+            margin: 0;
+            padding: 10px;
+            width: 400px;
+            border: 3px solid orangered;
+            font-size:16px;
+            font-family:微软雅黑;
+            margin: 40px auto;
+        }
+    </style>
+</head>
+<body>
+<p>
+    <span>妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！
+        目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等......</span>
+    <a href="#">>>收缩</a>
+</p>
+<script>
+    var span=document.getElementsByTagName('span')[0];
+    var oA=document.getElementsByTagName('a')[0];
+    var str=span.innerHTML;
+    var onoff=true;
+    oA.onclick=function(){
+        if (onoff){
+            span.innerHTML=str.substring(0,18);
+            oA.innerHTML='>>展开';
+        } else{
+            oA.innerHTML='>>收缩';
+            span.innerHTML=str;
+        }
+        onoff=!onoff;
+
+
+    }
+</script>
+</body>
+</html>

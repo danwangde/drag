@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器应用跑跑跑</title>
+    <style>
+        #div1{
+            width: 100px;height: 100px;background: red;position: absolute;top: 50px;left: 30px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="往前"/>
+<input type="button" value="往后"/>
+<div id="div1"></div>
+<script>
+    var aBtn=document.getElementsByTagName('input');
+    var oDiv=document.getElementById('div1');
+    //oDiv.timer=null;
+
+    aBtn[0].onclick=function () {
+        doMove(oDiv,12,800);
+    }
+
+    aBtn[1].onclick=function () {
+        doMove(oDiv,-12,10);
+    }
+    function doMove(obj,dir,target) {
+        clearInterval(obj.timer);
+        obj.timer=setInterval(function () {
+            var speed=parseInt(getStyle(obj,'left'))+dir;//12   步长(向左)
+            if (speed>target && dir>0){//往前跑
+                speed=target;
+            }
+            if (speed<target && dir<0){//往后跑
+                speed=target;
+            }
+            obj.style.left=speed+'px';
+            if (speed==target){
+                clearInterval(obj.timer);
+            }
+        },40)
+    }
+    function getStyle(obj,attr){
+        return obj.currentStyle ? obj.currentStyle[attr]: getComputedStyle(obj)[attr];
+    }
+</script>
+</body>
+</html>

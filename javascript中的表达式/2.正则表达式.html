@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串方法找数字</title>
+</head>
+<body>
+<script>
+    var str='abc123dfn456mnp78hk965';
+    
+    function findNum(str) {
+       var arr=[];
+       var temp='';
+
+        for (var i=0;i<str.length;i++){
+            if (str.charAt(i)>='0' && str.charAt(i)<='9'){
+                temp+=str.charAt(i);
+            }else if (temp) {
+                arr.push(temp);
+                temp='';
+            }
+        }
+        //最后一个的时候再执行一次
+        if (temp) {
+            arr.push(temp);
+            temp='';
+        }
+        return arr;
+    }
+    console.log(findNum(str));
+
+</script>
+</body>
+</html>

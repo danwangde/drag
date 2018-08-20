@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>元素的属性操作</title>
+</head>
+<body>
+<img src="img/u=1710498457,4188737321&fm=15&gp=0.jpg" alt="美女"title="漂亮妹妹">
+<script>
+    var img=document.getElementsByTagName('img')[0];
+    img.setAttribute('src','img/u=2591071059,5457999&fm=27&gp=0.jpg');
+    console.log(img.getAttribute('src'));
+    img.removeAttribute('src');
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width:100px;height:100px;background: red;position: absolute;
+        }
+        #div2{
+            width:100px;height:100px;background: yellow;position: absolute;left:100px;
+        }
+    </style>
+    <script>
+        /*var oDiv=null;
+        var disX=0;
+        var disY=0;
+        window.onload=function () {
+            oDiv=document.getElementById('div1');
+            oDiv.onmousedown=getDown;
+
+        }
+
+        function getDown(ev){
+            var ev=ev || event;
+            disX=ev.clientX-oDiv.offsetLeft;
+            disY=ev.clientY-oDiv.offsetTop;
+
+            document.onmousemove=getMove;
+            document.onmouseup=getUp;
+            return false;
+        }
+
+        function getMove(ev) {
+                var ev=ev || event;
+                oDiv.style.left=ev.clientX-disX+'px';
+                oDiv.style.top=ev.clientY-disY+'px';
+        }
+
+        function getUp () {
+            document.onmouseup=document.onmousemove=null;
+        }*/
+        window.onload=function () {
+            var t1=new Drag('div1');
+            t1.init();
+        }
+        function Drag(id) {
+            this.obj=document.getElementById(id);
+            this.disX=0;
+            this.disY=0;
+        }
+        Drag.prototype.init=function () {
+            var This=this;
+
+            this.obj.onmousedown=function (ev) {
+                var ev=ev || event;
+                This.getDown(ev);
+                return false;
+            }
+        }
+        Drag.prototype.getDown=function (ev) {
+            var This=this;
+            this.disX=ev.clientX-this.obj.offsetLeft;
+            this.disY=ev.clientY-this.obj.offsetTop;
+
+            document.onmousemove=function(ev){
+                var ev=ev || event;
+                This.getMove(ev);
+            }
+            document.onmouseup=this.getUp;
+        }
+        Drag.prototype.getMove = function(ev){
+            this.obj.style.left = ev.clientX - this.disX + 'px';
+            this.obj.style.top = ev.clientY - this.disY + 'px';
+        };
+        Drag.prototype.getUp = function(){
+            document.onmousemove=document.onmouseup = null;
+        };
+        function childDrag() {
+
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

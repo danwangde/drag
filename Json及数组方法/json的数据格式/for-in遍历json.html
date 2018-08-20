@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var json={'name':'feifei ','age':24,'sex':'male'};
+    for (var index in json){
+        document.write(json[index]);//feifei  24  male
+        document.write(index);//age name sex
+    }*/
+
+
+    var json={'url':['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'],
+              'text':['图片1','图片2','图片3','图片4']
+    };
+    for (var index in json){
+         console.log(index);// url text
+         console.log(json[index]);//["img/1.jpg", "img/2.jpg", "img/3.jpg", "img/4.jpg"] ["图片1", "图片2", "图片3", "图片4"]
+        console.log(json[index].length);//4
+        for (var i=0;i<json[index].length;i++){
+            console.log(json[index][i]);//每一个都被打印出来。
+        }
+    }
+</script>
+</body>
+</html>

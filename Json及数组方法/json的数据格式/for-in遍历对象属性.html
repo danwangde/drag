@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for=in遍历对象</title>
+</head>
+<body>
+<script>
+    var str='';
+    for (var index in document) {//window
+      str +=index+':'+document[index]+'<br/>';
+    }
+    document.body.innerHTML=str;
+</script>
+</body>
+</html>

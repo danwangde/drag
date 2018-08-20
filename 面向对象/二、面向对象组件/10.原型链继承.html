@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var a={
+        name:'leo',
+        age:'30'
+    }
+    var b=cloneObj(a);
+
+    alert(b.name);
+    alert(b.age);
+    function cloneObj(obj) {
+        var F=function () {}
+        F.prototype=obj;
+        return new F();
+    }
+</script>
+</body>
+</html>

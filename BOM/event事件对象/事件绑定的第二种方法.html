@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定的第二种方法</title>
+    <style>
+        #div1{
+            width:200px;height:200px;background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    大西瓜呢？
+</div>
+<script>
+    var oDiv=document.getElementById('div1');
+    function bind(obj,eventName,fn) {
+        if (obj.addEventListener){
+            obj.addEventListener(eventName,fn,false);
+        } else{
+            obj.attachEvent('on'+eventName,function () {
+                fn.call(obj);
+            })
+        }
+    }
+    function fn1(){
+        //oDiv.style.background='red';
+        alert(this);
+    }
+    bind(oDiv,'click',fn1);
+</script>
+</body>
+</html>

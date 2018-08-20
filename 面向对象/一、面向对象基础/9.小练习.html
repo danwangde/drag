@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象做图片切换</title>
+    <style>
+        p,ul{
+            margin:0;padding:0
+        }
+        li{
+            list-style: none;
+        }
+
+        .box{
+            width:400px;height:400px;position: relative; background:url(img/loader_ico.gif)
+            no-repeat center #fff;float: left;margin-right: 60px;
+        }
+        .box img{
+            width:400px;height:400px;display: block;
+        }
+        .box p,.box span{
+            position: absolute;height:20px;width:400px;height:20px;text-align: center;color:red;
+            background: lightgrey ;
+        }
+        .box p{
+            top:0;
+        }
+        .box span{
+            bottom: 0;
+        }
+        .box ul{
+            position: absolute;right:-40px;top:0;
+        }
+       .box ul li{
+            width:20px;height:20px;background: papayawhip;text-align: center;line-height: 20px;
+            margin-bottom: 4px;
+        }
+        .box .active{
+            background: hotpink;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var t1 = new Tab('div1','ul1');
+            t1.create();
+            t1.begin();
+            t1.change();
+            t1.autoPlay();
+
+            var t2 = new Tab('div2','ul2');
+            t2.create();
+            t2.begin();
+            t2.change();
+            t2.autoPlay();
+        }
+        //构造函数（对象的属性）
+        function Tab(id1,id2) {
+            this.oDiv=document.getElementById(id1);
+            this.oUl=document.getElementById(id2);
+            this.aP=this.oDiv.getElementsByTagName('p')[0];
+            this.aSpan=this.oDiv.getElementsByTagName('span')[0];
+            this.aImg=this.oDiv.getElementsByTagName('img')[0];
+            this.aLi=this.oUl.getElementsByTagName('li');
+            this.isNow=0;
+
+            this.num=0; 
+            this.arr=[
+                {"title":'这是第1张照片',"images":'img/1.jpg'},
+                {"title":'这是第2张照片',"images":'img/2.jpg'},
+                {"title":'这是第3张照片',"images":'img/3.jpg'},
+                {"title":'这是第4张照片',"images":'img/4.jpg'},
+                {"title":'这是第5张照片',"images":'img/5.jpg'},
+                {"title":'这是第6张照片',"images":'img/6.jpg'},
+                {"title":'这是第7张照片',"images":'img/7.jpg'},
+                {"title":'这是第8张照片',"images":'img/8.jpg'},
+                {"title":'这是第9张照片',"images":'img/9.jpg'},
+                {"title":'这是第10张照片',"images":'img/18.jpg'},
+                {"title":'这是第11张照片',"images":'img/19.jpg'},
+                {"title":'这是第12张照片',"images":'img/12.jpg'},
+                {"title":'这是第13张照片',"images":'img/13.jpg'},
+                {"title":'这是第14张照片',"images":'img/20.jpg'},
+                {"title":'这是第15张照片',"images":'img/15.jpg'},
+                {"title":'这是第16张照片',"images":'img/16.jpg'},
+                {"title":'这是第17张照片',"images":'img/17.jpg'}
+            ]
+        }
+
+        Tab.prototype.create=function () {
+            for (var i=0;i<this.arr.length;i++){
+                var li=document.createElement('li');
+                li.innerHTML=i+1;
+                this.oUl.appendChild(li);
+            }
+        }
+
+//初始化：
+        Tab.prototype.begin=function(){
+            this.aP.innerHTML=this.arr[this.num].title;
+            this.aSpan.innerHTML=1+this.num+'/'+this.arr.length;
+            this.aImg.src=this.arr[this.num].images;
+            for (var i=0;i<this.arr.length;i++){
+                this.aLi[i].className='';
+            }
+            this.aLi[this.num].className='active';
+        }
+        Tab.prototype. change=function(){
+            var This=this;
+            for (var i=0;i<this.arr.length;i++){
+                this.aLi[i].index=i;
+                this.aLi[i].onclick=function () {
+                    This.num=this.index;
+                    This.begin();
+                }
+            }
+        }
+        Tab.prototype.autoPlay=function () {
+            var This=this;
+            setInterval(function () {
+                if (This.isNow==This.aLi.length-1) {
+                    This.isNow=0;
+                }else{
+                    This.isNow++;
+                }
+                This.aP.innerHTML=This.arr[This.isNow].title;
+                This.aSpan.innerHTML=1+This.isNow+'/'+This.arr.length;
+                This.aImg.src=This.arr[This.isNow].images;
+                for (var i=0;i<This.arr.length;i++){
+                    This.aLi[i].className='';
+                }
+                This.aLi[This.isNow].className='active';
+
+            },1000)
+        }
+
+    </script>
+</head>
+<body>
+<div id="div1" class="box">
+    <img src="" alt="">
+    <p>图片内容加载中</p>
+    <span>图片数量计算中</span>
+    <ul id="ul1"></ul>
+</div>
+<div id="div2" class="box">
+    <img src="" alt="">
+    <p>图片内容加载中</p>
+    <span>图片数量计算中</span>
+    <ul id="ul2"></ul>
+</div>
+</body>
+</html>

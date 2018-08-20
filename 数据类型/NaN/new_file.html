@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+	</head>
+
+	<body>
+	</body>
+	<script>
+	var arr = ['100px', 'abc' - 6, [], -98765, 34, -2, 0, '300', , function() { alert(1); }, null, document, [], true, '200px' - 30, '23.45元', 5, Number('abc'), function() { alert(3); }, 'xyz' - 90];
+	
+	for(var i=0;i<arr.length;i++){
+		var str='';
+		 if(typeof(arr[i]) === 'number' && !isNaN(arr[i])){  
+                str += arr[i] + ',';  
+                //document.write(str);
+                console.log(str);
+            }     
+	}
+	</script>
+</html>

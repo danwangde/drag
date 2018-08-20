@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var a =1;
+    function fn2(a) {
+        arguments[0]=5;//argumens[0]=a
+        alert(a);
+        var a=3;
+        alert(a)
+    }
+    fn2(a);
+    alert(a);
+</script>
+</body>
+</html>

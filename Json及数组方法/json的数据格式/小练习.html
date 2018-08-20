@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机产生100个0~1000之间不重复的整数</title>
+</head>
+<body>
+<script>
+    var arr=[];
+    for (var i=0;i<100;i++){
+        /*思路：先把随机数追加到数组尾部*/
+        arr.push(Math.round( Math.random()*1000));
+        for (var j=i+1;j<arr.length;j++) {
+            if (arr[i]===arr[j]){
+                arr.splice(j,1);
+                j--;
+            }
+        }
+    }
+    document.write(arr);
+</script>
+</body>
+</html>

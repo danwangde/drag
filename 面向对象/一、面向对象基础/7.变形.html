@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>普通选项卡变形</title>
+    <style>
+        #div1 div{
+            display: none;width: 200px;height:200px; border: 1px solid #000;
+        }
+        .active{
+            background: red;
+        }
+    </style>
+    <script>
+    /*  普通方法变型
+          * 尽量不要出现函数嵌套函数
+          * 可以有全局变量
+          * 把onload中不是赋值的语句放到单独函数中*/
+
+    var oDiv=null;
+    var divs=null;
+    var aInp=null;
+
+    window.onload=function () {
+        oDiv=document.getElementById('div1');
+        divs=oDiv.getElementsByTagName('div');
+        aInp=document.getElementsByTagName('input');
+        begin();
+    }
+
+    function begin(){
+        for (var i=0;i<aInp.length;i++){
+            aInp[i].index=i;
+            aInp[i].onclick=change;
+        }
+    }
+
+    function change () {
+        for (var i=0;i<aInp.length;i++){
+            divs[i].style.display='';
+            aInp[i].className='';
+        }
+        this.className='active';
+        divs[this.index].style.display='block';
+    }
+
+    </script>
+</head>
+<body>
+<div id="div1">
+    <input type="button" value="按钮1">
+    <input type="button" value="按钮2">
+    <input type="button" value="按钮3">
+    <div style="display: block">123</div>
+    <div>45757</div>
+    <div>32242</div>
+</div>
+
+</body>
+</html>

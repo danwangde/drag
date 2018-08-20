@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    window.onload=function () {
+        var p1=new CreatePerson('leo',20);
+        p1.showName();
+        var p2=new CreateStar('范伟',40,'演员');
+        p2.showName();
+
+    }
+   /* 继承：子类不影响父类，子类可以继承父类的一些功能（代码复用）*/
+    function CreatePerson(name,age) {
+        this.name=name;
+        this.age=age;
+    }
+    CreatePerson.prototype.showName=function () {
+        alert(this.name+':'+this.age+'岁');
+    }
+    function CreateStar(name,age,job,src) {
+        CreatePerson.call(this,name,age);
+        this.job=job;
+        this.src=src;
+    }
+    extend(CreateStar.prototype,CreatePerson.prototype);
+
+    CreateStar.prototype.showName=function () {
+        alert(this.job);
+    }
+    function extend(a1,a2){
+        for (var attr in a2){
+            a1[attr]=a2[attr];
+        }
+    }
+
+
+</script>
+</body>
+</html>

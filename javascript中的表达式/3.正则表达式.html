@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则找数字</title>
+</head>
+<body>
+<script>
+    var str='abc123dfn456mnp78hk965';
+
+    function findNum(str) {
+        return str.match(/\d+/g);
+    }
+    console.log(findNum(str));
+</script>
+</body>
+</html>

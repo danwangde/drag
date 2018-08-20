@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>无标题文档</title>
+		<style>
+			p {
+				font-size: 20px;
+			}
+		</style>
+
+		<script>
+			window.onload = function() {
+				var arr = ['100px', 'abc' - 6, [], -98765, 34, -2, 0, '300', , function() {
+					alert(1);
+				}, null, document, [], true, '200px' - 30, '23.45元', 5, Number('abc'), function() {
+					alert(3);
+				}, 'xyz' - 90];
+				var aP = document.getElementsByTagName('p');
+				var arrNum = []; //  数字：-98765, 34, -2, 0, 5
+				var arrNum1 = []; // 可以转成数字的：'100px', -98765, 34, -2, 0, '300', '23.45元',  5 
+				var arrNum3 = []; //  100,-98765,34,-2,0,300,23.45,5
+				var arrNum4 = []; // 'abc'-6    '200px'-30    Number('abc')      'xyz'-90
+				var max =0;
+
+				/*
+					1、找到arr里所有的数字：-98765, 34, -2, 0, 5
+					2、找到可以转成数字的：'100px', -98765, 34, -2, 0, '300', '23.45元',  5 
+					3、把转成数字以后，最大值判断出来：300
+					4、把 NaN 所在的位置找出来：1 14 17  19
+				*/
+				for(var i = 0; i < arr.length; i++) {
+
+					if(typeof arr[i] == 'number') {
+						//'abc'-6 -98765  34  -2  0  '200px'-30  5   Number('abc')  'xyz'-90
+						if(arr[i] == arr[i]) {
+							arrNum.push(arr[i]);
+							arrNum1.push(arr[i]);
+						}else{
+							//  NaN 不和自己相等
+							//alert( arr[i] );   // 'abc'-6    '200px'-30    Number('abc')      'xyz'-90
+							arrNum4.push(i);
+						}
+					}
+					if( typeof arr[i] == 'string' ){
+					// alert( arr[i] );  //  '100px',  '300', '23.45元',
+					arrNum1.push( arr[i] );
+					}
+				}
+				for(var i=0;i<arrNum1.length;i++){
+					arrNum3.push( parseInt( arrNum1[i] ) );
+					if(arrNum3[i]>max){
+						max=arrNum3[i];
+					}
+					
+				}
+				aP[0].innerHTML = '1.' +'arr里数字有：'+arrNum;
+				aP[1].innerHTML = '2.' +'arr里可以转成数字的有：'+ arrNum1;
+				aP[2].innerHTML = '3.'+'arr里数字最大的是：'+max;
+				aP[3].innerHTML = '4.'+'arr里NaN的位置在：'+arrNum4;
+			}
+		</script>
+
+	</head>
+
+	<body>
+		<p>1、找到arr里所有的数字：</p>
+		<p>2、找到可以转成数字的：</p>
+		<p>3、把转成数字以后，最大值判断出来：</p>
+		<p>4、把 NaN 所在的位置找出来：</p>
+	</body>
+
+</html>

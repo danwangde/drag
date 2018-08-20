@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			a {
+				text-decoration: none;
+			}
+			
+			p,
+			ul,
+			body,
+			li {
+				padding: 0;
+				margin: 0;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			.clearfix:after {
+				content: '';
+				display: block;
+				height: 0;
+				overflow: hidden;
+				visibility: hidden;
+				clear: both;
+			}
+			
+			.bg {
+				width: 686px;
+				height: 460px;
+				padding: 40px 14px 70px;
+				background: url(img/bg.jpg) no-repeat;
+				margin: 0 auto;
+				position: relative;
+			}
+			
+			p {
+				font-size: 24px;
+				color: #fff;
+				position: absolute;
+				line-height: 40px;
+				left: 14px;
+				top: 0;
+			}
+			
+			#box {
+				width: 686px;
+				height: 460px;
+				position: relative;
+			}
+			
+			img {
+				width: 686px;
+				height: 460px;
+			}
+			
+			#box a:hover {
+				filter: alpha(opacity:90);
+				opacity: 0.9;
+			}
+			
+			#box a {
+				width: 54px;
+				height: 54px;
+				border-radius: 50%;
+				background: #e8d7a3;
+				position: absolute;
+				top: 202px;
+				color: #fff;
+				text-align: center;
+				line-height: 54px;
+				font-size: 30px;
+				font-weight: bold;
+				filter: alpha(opacity:50);
+				opacity: 0.5;
+			}
+			
+			#prev {
+				left: 30px;
+			}
+			
+			#next {
+				right: 30px;
+			}
+			
+			ul {
+				margin-left: 306px;
+			}
+			
+			li {
+				float: left;
+				width: 16px;
+				height: 16px;
+				background: #9966CC;
+				border-radius: 50%;
+				margin-right: 10px;
+				margin-top: 20px;
+				position: relative;
+			}
+			
+			li:hover,.active {
+				background: #edbc0a;
+			}
+			
+			li #over {
+				width: 126px;
+				height: 80px;
+				background: url(img/scroll-bg.png) no-repeat;
+				position: absolute;
+				left: -55px;
+				top: -86px;
+				display:none;
+			}
+			
+			li #over img {
+				width: 120px;
+				height: 74px;
+				margin: 3px
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				var oPrev = document.getElementById('prev');
+				var oNext = document.getElementById('next');
+				var oImg = document.getElementsByTagName('img')[0];
+				var oUl = document.getElementsByTagName('ul')[0];
+				var aLi = oUl.getElementsByTagName('li');
+//				var oDiv = document.getElementById('over');
+//				var oImg1 = oDiv.getElementsByTagName('img')[0];
+				
+				var num = 0;
+				var arrcat =   ['img/cat-1.jpg','img/cat-2.jpg','img/cat-3.jpg','img/cat-4.jpg']
+				
+				function fncat(){			//初始化
+					oImg.src = arrcat[num];
+					for( var i=0; i<aLi.length; i++){
+					
+						aLi[i].className = '';
+					}									
+			        	aLi[num].className = 'active';
+				}
+				fncat();
+				
+				oNext.onclick = function(){			//下一张
+					num++;
+					if(num==arrcat.length){
+						num=0;}
+					fncat();
+				}
+				oPrev.onclick = function(){			//上一张
+					num--;
+					if(num==-1){
+						num=arrcat.length-1;}
+					fncat();
+				}
+				
+				for(var i=0;i<aLi.length;i++){			//鼠标移入
+					aLi[i].index = i;
+					aLi[i].onmouseover = function(){
+					this.getElementsByTagName('div')[0].style.display = 'block';
+					this.getElementsByTagName('img')[0].src = arrcat[this.index];
+					}
+					
+					aLi[i].onmouseout = function(){     //鼠标移出
+					this.getElementsByTagName('div')[0].style.display = 'none';
+					}
+					
+					aLi[i].onclick = function(){    //点击li
+			        num=this.index;
+			        fncat();
+					}
+					
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div class="bg">
+			<p>带缩略图的图片轮换</p>
+			<div id="box">
+				<img src=""/>
+				<a id="prev" href="javascript:;"><</a>
+                <a id="next" href="javascript:;">></a>
+            </div>
+            <ul class="clearfix">
+            	<li><div id="over"><img src=""/></div></li>
+            	<li><div id="over"><img src=""/></div></li>
+            	<li><div id="over"><img src=""/></div></li>
+            	<li><div id="over"><img src=""/></div></li>
+            </ul>
+		</div>
+	</body>
+</html>

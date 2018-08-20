@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM</title>
+</head>
+<body>
+<input type="button" value="打开新窗口">
+<input type="button" value="关闭窗口">
+<script>
+    var btn=document.getElementsByTagName('input');
+    var opener=null;
+    /*
+    * open(页面的地址url，打开的方式)方法  打开一个新的窗口（页面）
+    *如果url为空，则默认打开一个空白页面
+    * 如果打开方式为空，默认为新窗口方式打开
+    * 返回值：返回新打开的窗口的window对象
+    * */
+    btn[0].onclick=function () {
+        //window.open();
+        //window.open('http://www.baidu.com','_self');//当前窗口打开百度
+        opener=window.open();
+        alert(opener);//新窗口的window对象
+    }
+    btn[1].onclick=function () {
+        opener.close();
+    }
+    /*
+    * close  关闭窗口
+    * 1.firerox:默认无法关闭；
+    * 2.chrome:默认直接关闭；
+    * 3.ie:询问用户是否关闭
+    * 4.可以关闭在本窗口中通过JS打开的新窗口
+    * */
+</script>
+</body>
+</html>

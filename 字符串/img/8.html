@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>join高亮显示</title>
+    <style>
+        p{
+            padding: 20px;width:400px;margin: 20px  auto;
+            border: 4px solid yellow;background: coral;
+        }
+        form{
+            width:400px;margin: 20px  auto
+        }
+        span{
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<form action="#">
+    <input type="text">
+    <input type="text">
+    <input type="button" value="替换"/>
+</form>
+<p>妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！
+    目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等......</p>
+<script>
+    var p=document.getElementsByTagName('p')[0];
+    var aInp=document.getElementsByTagName('input');
+    aInp[2].onclick=function () {
+        var str=aInp[0].value;
+        var str1=aInp[1].value;
+        if (str=='')return;
+        p.innerHTML=p.innerHTML.split(str).join('<span>'+str1+'</span>');
+    }
+</script>
+</body>
+</html>

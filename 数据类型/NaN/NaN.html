@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function (){
+			var aInput = document.getElementsByTagName('input');
+			var str ='';
+			aInput[1].onclick = function (){
+				str=aInput[0].value;
+				if(isNaN(str)){
+					alert(str+'不是数字');
+				}else{
+					alert(str+'是数字');
+				}
+			}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" />
+		<input type="button" value="判断输入的是不是数字" />
+	</body>
+</html>

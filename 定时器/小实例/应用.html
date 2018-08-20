@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器应用</title>
+    <style>
+        #div1{
+            width: 100px;height: 100px;background: red;position: absolute;top: 50px;left: 30px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="往前"/>
+<input type="button" value="往后"/>
+<div id="div1"></div>
+<script>
+var oBtn=document.getElementsByTagName('input');
+var oDiv=document.getElementById('div1');
+//oDiv.timer=null;
+
+oBtn[0].onclick=function () {
+    //alert(parseInt(getStyle(oDiv,'left')));
+    clearInterval(oDiv.timer);
+    oDiv.timer=setInterval(function () {
+        var speed=parseInt(getStyle(oDiv,'left'))+12;//12   步长
+        if (speed>=800){
+            speed=800;
+        }
+        oDiv.style.left=speed+'px';
+        if (speed==800){
+            clearInterval(oDiv.timer);
+        }
+    },40)
+}
+
+oBtn[1].onclick=function () {
+    //alert(parseInt(getStyle(oDiv,'left')));
+    clearInterval(oDiv.timer);
+    oDiv.timer=setInterval(function () {
+        var speed=parseInt(getStyle(oDiv,'left'))+-12;//12   步长(向左)
+        if (speed<10){
+            speed=10;
+        }
+        oDiv.style.left=speed+'px';
+        if (speed==10){
+            clearInterval(oDiv.timer);
+        }
+    },40)
+}
+function getStyle(obj,attr){
+    return obj.currentStyle ? obj.currentStyle[attr]: getComputedStyle(obj)[attr];
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉菜单</title>
+    <style>
+        #div1{
+            width:100px;height:200px;border:1px solid red;display: none;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="按钮" id="btn">
+<div id="div1"></div>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<script>
+    /*
+    * 阻止冒泡：当前要阻止冒泡的事件函数中调用 event.cancelBubble=true;
+    * */
+
+    var btn=document.querySelector('#btn');
+    var oDiv1=document.querySelector('#div1');
+    //要阻止点击按钮时候的冒泡事件
+    btn.onclick=function (ev) {
+        var ev=ev || event;
+        ev.cancelBubble=true;
+        oDiv1.style.display='block';
+    }
+
+    document.onclick=function () {
+        oDiv1.style.display='none';
+    }
+
+
+</script>
+</body>
+</html>

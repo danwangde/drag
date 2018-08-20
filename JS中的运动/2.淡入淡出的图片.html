@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>淡入淡出的图片</title>
+    <style>
+        #div1{
+            width:100px;height:200px;background: red;position: absolute;top:100px;left:-100px;
+        }
+        #div2{
+            width:30px;height:60px;background: black;position: absolute;top:70px;right:-30px;
+            color:white;text-align: center;
+        }
+        img{
+            width:600px;height:400px;opacity:0.4;filter: alpha(opacity=40);margin-left: 200px;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var oDiv1=document.getElementById('div1');
+            var oDiv2=document.getElementById('div2');
+            var oImg=document.getElementsByTagName('img')[0];
+            var iTimer=null;
+            oImg.onmouseover=function () {
+                doMove(this,100,10);
+            }
+            oImg.onmouseout=function () {
+                doMove(this,40,-10);
+            }
+            function doMove(obj,target,speed) {
+                clearInterval(iTimer);
+                var iCur=0;
+                iTimer=setInterval(function () {
+
+                    iCur=Math.round(css(oImg,'opacity')*100);
+                    if (iCur==target){
+                        clearInterval(iTimer);
+                    }else {
+                        obj.style.opacity=(iCur+speed)/100;
+                        obj.style.filter='alpha(opacity='+(iCur+speed)+')';
+                    }
+                },30)
+
+            }
+            function css(obj,attr) {
+                if (obj.currentStyle){
+                    return obj.currentStyle[attr];
+                } else{
+                    return getComputedStyle(obj,false)[attr];
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+    <div id="div2">分享到</div>
+</div>
+<img src="img/timg%20(1).jpg" alt="">
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str='2018-8-2';
+    var re=/(\d+)(-)/g;
+    restr=str.replace(re,function (s0,s1,s2) {
+       return s1+'.';
+    })
+    alert(restr);
+</script>
+
+</body>
+</html>

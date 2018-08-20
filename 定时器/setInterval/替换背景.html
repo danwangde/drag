@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>替换背景</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .bc{
+            width: 580px;
+            margin: 0 auto;
+        }
+        #box{
+            width: 580px;
+            height: 550px;
+            border: 1px solid #000;
+        }
+        input{
+            width:100px;
+            height: 40px;
+            margin-left: 114px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="bc">
+    <input type="button" value="换背景吧"/>
+    <input type="button" value="停"/>
+    <div id="box"></div>
+</div>
+<script>
+    var aBtn=document.getElementsByTagName('input');
+    var arr=['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];
+    var num=0;
+    var timer=null;
+    var oDiv=document.getElementById('box');
+    aBtn[0].onclick=function(){
+        clearInterval(timer);//多次点击就不会出现点击停停不下来。
+        timer=setInterval(function (){
+            oDiv.style.background='url('+arr[num]+')';
+            num++;
+            num%=arr.length;
+        },1000)
+    }
+    aBtn[1].onclick=function () {
+        clearInterval(timer);
+    }
+</script>
+</body>
+</html>

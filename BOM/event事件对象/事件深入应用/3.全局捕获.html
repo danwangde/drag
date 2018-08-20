@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全局捕获</title>
+    <style>
+        #div1{
+            width:100px;height:100px;background: red;position: absolute;
+        }
+    </style>
+</head>
+<body>
+dshdkahski
+<div id="div1"></div>
+<script>
+    /*设置全局捕获：
+       当我们给一个元素设置全局捕获以后，那么这个元素就会监听后续发生的所有事件，当有事件发生的时候，
+       就会被当前设置了全局捕获的元素所触发。
+     */
+    /*1.拖拽的时候，如果有文字被选中，会产生问题。
+  原因：当鼠标按下的时候，如果页面中有文字被选中，那么会出发浏览器默认拖拽文字的效果。
+  解决方法：①：标准下  在onmousedown的后面加上 return false  即可
+           ②：ie下   设置全局捕获 阻止文字移动事件的发生
+              设置全局捕获：setCapture()  释放全局捕获releaseCapture（）*/
+    var oDiv=document.getElementById('div1');
+    oDiv.onmousedown=function (ev) {
+        var ev=ev || event;
+        var X=ev.clientX-this.offsetLeft;
+        var Y =ev.clientY-this.offsetTop;
+
+        if(oDiv.setCapture){
+            oDiv.setCapture();
+        }
+        document.onmousemove=function (ev) {
+            oDiv.style.left=ev.clientX-X+'px';
+            oDiv.style.top=ev.clientY-Y+'px';
+        }
+        document.onmouseup=function () {
+            document.onmousemove=document.onmouseup=null;
+            //释放全局捕获releaseCapture（）
+            if (oDiv.releaseCapture) {}
+            oDiv.releaseCapture();
+        }
+        return false;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>磁性吸附</title>
+    <style>
+        #div1{
+            width:100px;height:100px;background: red;position: absolute;z-index: 3;
+        }
+        img{
+            position: absolute;border: none;vertical-align: top;width:500px;height:300px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<img src="img/meimei.jpg" alt=""><!--
+<img src="img/xiao1.jpg" alt="">
+<img src="img/xiaomei.jpg" alt="">
+<img src="img/lala.jpg" alt="">-->
+<script>
+
+    var oDiv=document.getElementById('div1');
+    var img=document.getElementsByTagName('img');
+
+    drag(oDiv);
+    for(var i=0;i<img.length;i++){
+        drag(img[i]);
+    }
+
+    function drag(obj){
+        obj.onmousedown=function (ev) {
+            var ev=ev || event;
+            var X=ev.clientX-this.offsetLeft;
+            var Y =ev.clientY-this.offsetTop;
+
+            if (obj.setCapture){
+                obj.setCapture();
+            }
+            document.onmousemove=function (ev) {
+                var ev=ev || event;
+                var L=ev.clientX-X;
+                var T=ev.clientY-Y;
+
+                if (L<200){
+                    L=0;
+                } else if (L>document.documentElement.clientWidth-obj.offsetWidth) {
+                    L=document.documentElement.clientWidth-obj.offsetWidth;
+                }
+
+                if (T<100){
+                    T=0;
+                } else if(T>document.documentElement.clientHeight-obj.offsetHeight){
+                    T=document.documentElement.clientHeight-obj.offsetHeight
+                }
+                obj.style.left=L+'px';
+                obj.style.top=T+'px';
+            }
+            document.onmouseup=function () {
+                document.onmousemove=document.onmouseup=null;
+                //释放全局捕获releaseCapture（）
+                if (obj.releaseCapture){
+                    obj.releaseCapture();
+                }
+            }
+            return false;
+        }
+    }
+
+
+</script>
+</body>
+</html>

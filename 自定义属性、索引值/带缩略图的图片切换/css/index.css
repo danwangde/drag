@@ -1,0 +1,60 @@
+p {
+	margin: 0;
+	padding: 0;
+}
+.bg {
+	width: 800px;
+	height: 440px;
+	margin: 40px auto;
+	padding: 40px;
+	background: url(../img/youth-bg.jpg) no-repeat;
+}
+#pic {
+	height: 282px;
+}
+#pic_left {
+	float: left;
+	width: 450px;
+	border: 1px solid #959595;
+	background: #FFF;
+}
+#pic_right {
+	float: right;
+	width: 300px;
+	border: 1px solid #959595;
+	background: #FFF;
+}
+#btn1, #btn2 {
+	width: 80px;
+	height: 20px;
+	border-radius: 5px;
+	border: 1px solid #000;
+	background: #fff;
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+#pic_left img {
+	width: 410px;
+	height: 220px;
+	margin: 20px 20px 8px 20px;
+	cursor: pointer;
+}
+#pic_right img {
+	width: 260px;
+	height: 220px;
+	margin: 20px 20px 8px 20px;
+	cursor: pointer;
+}
+#pic_left span, #pic_right span {
+	text-align: center;
+	display: inline-block;
+}
+#pic_left span {
+	width: 450px;
+}
+#pic_right span {
+	width: 300px;
+}
+#pic_left p, #pic_right p {
+	margin-left: 20px;
+}

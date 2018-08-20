@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>indexOf</title>
+</head>
+<body>
+<script>
+    var str='秒味课堂是一支独具特色的前端开发培训团队，秒味反对传统枯燥乏味的教学模式,秒味提供一种全新的快乐学方法';
+    var s='秒味';
+    for (var i=0;str.indexOf(s,i)!=-1;) {
+        document.write(str.indexOf(s,i)+'<br/>');
+        i=str.indexOf(s,i)+s.length;
+    }
+</script>
+</body>
+</html>

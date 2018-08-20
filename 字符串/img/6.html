@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>split应用</title>
+    <style>
+        ul{
+            margin: 0;padding: 0;
+        }
+        #div1{
+            width: 400px;height:300px;border:1px solid red ;
+        }
+        ul{
+            height: 400px;padding: 40px;
+        }
+        li{
+            width: 40px;height: 40px;float: left;list-style: none;line-height: 40px;
+            text-align: center;margin-right: 5px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="div1">
+    <ul>
+    </ul>
+</div>
+<input type="text">
+<input type="button" value="确定"/>
+<script>
+    var oDiv=document.getElementById('div1');
+    var aUl=oDiv.getElementsByTagName('ul')[0];
+    var aInp=document.getElementsByTagName('input');
+    var aLi=document.getElementsByTagName('li');
+    var arr=['red','blue','pink','green'];
+    aInp[1].onclick=function () {
+        var str=aInp[0].value;
+        var str1=str.split('');
+        for (var i=0;i<str1.length;i++){
+            aUl.innerHTML+='<li style="background: '+arr[i%arr.length]+';">'+str1[i]+'</li>';
+        }
+
+    }
+</script>
+</body>
+</html>

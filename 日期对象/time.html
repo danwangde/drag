@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时间</title>
+    <style>
+        body{
+            width: 400px;
+            margin: 0 auto;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var body=document.body;
+
+            setInterval(time,1000);
+            time();
+            function time() {
+                var date=new Date();
+                var year=date.getFullYear();
+                var month=date.getMonth();
+                var day=date.getDate();
+                var week=date.getDay();
+                var hour=date.getHours();
+                var minute=date.getMinutes();
+                var second=date.getSeconds();
+                var str='';
+
+                if (week===0)week='日';
+                if (week===1)week='一';
+                if (week===2)week='二';
+                if (week===3)week='三';
+                if (week===4)week='四';
+                if (week===5)week='五';
+                if (week===6)week='六';
+                str=year+'年'+(month+1)+'月'+day+'日 '+' 星期'+week+'&nbsp&nbsp&nbsp&nbsp&nbsp'+
+                    reset(hour)+'：'+reset(minute)+'：'+reset(second);
+                body.innerHTML=str;
+            }
+            function reset(n) {
+               return  n<10? '0'+n:''+n;
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

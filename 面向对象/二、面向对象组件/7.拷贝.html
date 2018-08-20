@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var a={
+        name:'leo'
+    }
+    var b=a;
+    b.name='ben'
+    alert(a.name);*/
+
+    var a={
+        name:'leo'
+    }
+    var b={};
+    for (var attr in a){
+        b[attr]=a[attr]
+    }
+    b.name='ben';
+    alert(a.name);
+</script>
+</body>
+</html>

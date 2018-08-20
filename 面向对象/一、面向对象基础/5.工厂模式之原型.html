@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function CreatePerson(name) {
+        this.name=name;
+    }
+
+    CreatePerson.prototype.showName=function () {
+        alert(this.name);
+    }
+
+    var p1=new CreatePerson('小明');
+    p1.showName();//小明
+
+    var p2=new CreatePerson('小强');
+    p2.showName();//小强
+    alert(p1.showName===p2.showName);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*setInterval间隔指定的毫秒重复执行
+      clearInterval 停止上面的执行*/
+    var  i=0;
+    var clear=setInterval(fn1,1000);
+    function fn1() {
+        i++;
+        document.title=i;
+        if (i==10){
+            clearInterval(clear);
+        }
+    }
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>理解闭包</title>
+</head>
+<body>
+
+<script>
+    //闭包：就是能够读取其他函数内部变量的函数。 简单理解为：定义在一个函数内部的函数。
+    //是将函数内部和外部连接起来的一座桥梁。
+    //根据作用域链的规则，底层作用域没有声明的变量，会向上一级找，找打就返回，
+    // 没找到就一直找，直到window的变量，没有就返回undefined。
+    var count=30;//全局作用域
+    function fn() {
+        var count=20;//函数全局作用域
+        function f2() {
+            count++;//函数内部作用域
+            alert(count);
+        }
+        return (f2);
+    }
+    var result=fn();
+    result();
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

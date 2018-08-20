@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>传参</title>
+</head>
+<body>
+<script>
+    /* fn1(function fn2(){alert(100)});
+     function fn1(fn) {
+         fn();
+     }*/
+    //函数作为参数传参
+     /*function fn3() {
+         alert(4);
+     }
+     fn4(fn3);
+     function fn4(fn) {
+         fn();
+     }*/
+
+     /*function show(name,no) {
+         document.write('信息为：'+'姓名：'+name+'<br/>'+'学号:'+no)
+     }
+     show('王奔飞','746927725');*/
+
+     function f5(w,d) {
+         w.onload=function () {
+             d.body.innerHTML='大家好，欢迎学习函数传参！';
+         }
+     }
+     f5(window,document);
+</script>
+</body>
+</html>

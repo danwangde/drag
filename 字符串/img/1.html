@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text"/>
+<input type="button" value="检测"/>
+<script>
+    var aInp=document.getElementsByTagName('input');
+    var str='';
+    var onoff=true;
+    aInp[1].onclick=function () {
+       str=aInp[0].value;
+        for (var i=0;i<str.length;i++){
+            if (str.charCodeAt(i)<48 ||str.charCodeAt(i)>57){
+                onoff=false;
+            }
+            else{
+                onoff=true;
+            }
+        }
+        if (onoff){
+            alert('输入正确');
+        } else{
+            alert('必须输入数字');
+        }
+
+
+
+
+    }
+
+</script>
+</body>
+</html>

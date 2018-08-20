@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟滚动条控制其他元素的变化
+    </title>
+    <style>
+        #div1{
+            width:30px;height:500px;background: black;position: absolute;
+            left:10px;top:10px;
+        }
+        #div2{
+            width:30px;height:30px;background: red;position: absolute;
+            left:0;top:0;
+        }
+        #div3{
+            width:500px;height:0px;background: green;position:absolute;top:10px;left:50px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <div id="div2"></div>
+</div>
+<div id="div3"></div>
+    <script>
+        var oDiv1=document.getElementById('div1');
+        var oDiv2=document.getElementById('div2');
+        var oDiv3=document.getElementById('div3');
+        var maxY=oDiv1.offsetHeight-oDiv2.offsetHeight;
+
+        oDiv2.onmousedown=function (ev) {
+            var ev=ev ||event;
+            var disY=ev.clientY-this.offsetTop;
+            document.onmousemove=function (ev) {
+                var ev=ev||event;
+                var Y=ev.clientY-disY;
+                if ( Y<0 ){
+                    Y=0;
+                }else if(Y>maxY){
+                    Y=maxY;
+                }
+                oDiv2.style.top=Y+'px';
+                var iScale=Y/maxY;
+                oDiv3.style.height=500*iScale+'px';
+            }
+            document.onmouseup=function () {
+                document.onmousemove=document.onmouseup=null;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

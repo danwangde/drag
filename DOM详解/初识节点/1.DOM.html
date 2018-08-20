@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初识DOM</title>
+    <style>
+        ul{
+            margin: 0;padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #ul1{
+            width:400px;margin: 20px auto;
+        }
+        #ul1 li{width:400px;height:50px;background: #7e9b92;margin-bottom: 4px;}
+        #ul1 .none{background: #9b4f72}
+        #ul1 .active{background: yellow}
+        #ul1 .focus{background: pink}
+        #ul1 .near{background: mediumseagreen;color: blue}
+
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li class="none">111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+    <li>666</li>
+    <li>777</li>
+    <li>888</li>
+    <li class="none">999</li>
+</ul>
+<script>
+    var ul=document.getElementById('ul1'),
+        li=ul.children;
+    for (var i=0;i<li.length;i++){
+        li[i].onmouseover=function () {
+            if (this===ul.firstElementChild || this===ul.lastElementChild){
+                this.className='active';
+            }else{
+                this.className='focus';
+                this.previousElementSibling.className= this.nextElementSibling.className='near';
+                ul.children[0].className=ul.children[li.length-1].className='none';
+            }
+        }
+        li[i].onmouseout=function () {
+            for (var i=0;i<li.length;i++){
+                li[i].className='';
+            }
+            ul.firstElementChild.className=ul.lastElementChild.className='none';
+        }
+    } 
+</script>
+</body>
+</html>

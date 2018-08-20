@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>普通选项卡变形</title>
+    <style>
+        #div1{
+            margin-bottom: 4px;
+        }
+        #div1 div,#div2 div{
+            display: none;width: 200px;height:200px; border: 1px solid #000;
+        }
+        .active{
+            background: red;
+        }
+        input{
+            width:46px;height:30px;
+            margin-bottom: 2px;
+        }
+    </style>
+    <script>
+        /*  普通方法变型
+              * 尽量不要出现函数嵌套函数
+              * 可以有全局变量
+              * 把onload中不是赋值的语句放到单独函数中
+              * //改this指向问题 : 事件或者是定时器,尽量让面向对象中的this指向对象*/
+
+
+
+        window.onload=function () {
+            var t1=new Tab('div1');
+            t1.begin();
+            t1.autoPlay();
+
+            var t2=new Tab('div2');
+            t2.begin();
+            t2.autoPlay();
+        }
+        //构造函数
+        function Tab(id){
+            //对象的属性
+            this.oDiv=document.getElementById(id);
+            this.divs=this.oDiv.getElementsByTagName('div');
+            this.aInp=this.oDiv.getElementsByTagName('input');
+            this.iNow = 0;
+        }
+
+        //函数就是方法
+        Tab.prototype. begin=function (){
+            var that=this;//this指 对象
+            for (var i=0;i<this.aInp.length;i++){
+                this.aInp[i].index=i;
+                this.aInp[i].onclick=function () {
+                    that.change(this);
+                }
+            }
+        }
+
+        Tab.prototype. change=function (obj) {
+            for (var i=0;i<this.aInp.length;i++){
+                this.divs[i].style.display='';//this 指按钮
+                this.aInp[i].className='';//this 指按扭
+            }
+            obj.className='active';
+            this.divs[obj.index].style.display='block';
+        }
+
+        Tab.prototype.autoPlay=function () {
+            var This=this;
+            setInterval(function () {
+
+                if(This.iNow == This.aInp.length-1){
+                    This.iNow = 0;
+                }
+                else{
+                    This.iNow++;
+                }
+
+                for(var i=0;i<This.aInp.length;i++){
+                    This.aInp[i].className = '';
+                    This.divs[i].style.display = 'none';
+                }
+                This.aInp[This.iNow].className = 'active';
+                This.divs[This.iNow].style.display = 'block';
+
+            },2000)
+        }
+
+    </script>
+</head>
+<body>
+<div id="div1">
+    <input class="active" type="button" value="按钮1">
+    <input type="button" value="按钮2">
+    <input type="button" value="按钮3">
+    <div style="display: block">如果林书豪能够加盟中国男篮的话，
+        能够实质性提高中国男篮后卫的水平。林书豪自从创造林疯狂奇迹过后，
+        就在NBA站稳脚跟，职业生涯效力过勇士、尼克斯、火箭、湖人、黄蜂和篮网等球队
+    </div>
+    <div>在火箭和湖人期间，林书豪一度有些不得志，未能发挥出自己的实力，也一度无法享受篮球带来的快乐。</div>
+    <div>林书豪作为一名攻击型控球后卫，身体强壮，爆发力强，速度很快，拥有极强的内线
+        突破能力，拥有不错的中远距离投篮能力，</div>
+</div>
+
+<div id="div2">
+    <input class="active" type="button" value="按钮1">
+    <input type="button" value="按钮2">
+    <input type="button" value="按钮3">
+    <div style="display: block">如果林书豪能够加盟中国男篮的话，
+        能够实质性提高中国男篮后卫的水平。林书豪自从创造林疯狂奇迹过后，
+        就在NBA站稳脚跟，职业生涯效力过勇士、尼克斯、火箭、湖人、黄蜂和篮网等球队
+    </div>
+    <div>在火箭和湖人期间，林书豪一度有些不得志，未能发挥出自己的实力，也一度无法享受篮球带来的快乐。</div>
+    <div>林书豪作为一名攻击型控球后卫，身体强壮，爆发力强，速度很快，拥有极强的内线
+        突破能力，拥有不错的中远距离投篮能力，</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+ul,p{margin:0;padding:0;}
+li{list-style:none;}
+body{background:#333;}
+#pic{width:400px;height:500px;background:url(img/loader_ico.gif) no-repeat center #fff;margin:0 auto;position:relative;}
+#pic img{width:400px;height:500px;}
+#pic p,#pic span { position:absolute; left:0; width:400px; height:30px; line-height:30px; text-align:center; color:#fff; background:#000; }
+#pic span { top:0; }
+#pic p { bottom:0; margin:0; }
+#pic ul{width:40px;position:absolute;top:0;right:-60px;}
+#pic li{width:40px;height:40px;background:#666;margin-bottom:10px;color:#fff;line-height:40px;text-align:center;cursor:pointer;}
+#pic .active{background:#F00;}
+</style>
+
+<script>
+window.onload = function (){
+  var oDiv = document.getElementById('pic');	//初始化
+  var oUl = oDiv.getElementsByTagName('ul')[0];
+  var oP = oDiv.getElementsByTagName('p')[0];//疑问：为什么获取元素不写成 var aP = oDiv.getElementsByTagName('p')[0];然后下面初始化的时候写成aP[0].innerHTML = arr2[num];
+  var oSpan = oDiv.getElementsByTagName('span')[0];
+  var oImg = oDiv.getElementsByTagName('img')[0];
+  var aLi = oUl.getElementsByTagName('li');
+  
+  var arr1 = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpeg']
+  var arr2 = ['老婆1','老婆2','夫妻','老婆3','老公']
+  var num=0;
+  var str='';
+  
+  oSpan .innerHTML = 1+num+'/'+arr1.length;
+  oP.innerHTML = arr2[num];
+  oImg.src = arr1[num];
+  
+  
+  for(var i=0;i<arr1.length;i++){
+	str+= '<li>'+i+'</li>';
+	   oUl.innerHTML=str;
+  };
+  
+  aLi[num].className = 'active';
+  var len=aLi.length;
+  
+  for(var i=0;i<len;i++){
+	 
+	  aLi[i].index=i;
+	aLi[i].onclick = function(){
+	  oImg.src= arr1[this.index];	
+	  oP.innerHTML = arr2[this.index];
+	 /* this.innerHTML = this.index;*/
+	  oSpan.innerHTML = 1+this.index + ' / '+arr2.length;
+      for(var i=0;i<len;i++){
+	  aLi[i].className = '';
+      };
+	 this.className = 'active'; 
+   };   
+  }; 
+};
+</script>
+</head>
+
+<body>
+<div id="pic">
+	<img src="" />
+	<p>图片文字加载中</p>
+	<span>图片数量加载中</span>
+    <ul></ul>
+</div>
+</body>
+</html>

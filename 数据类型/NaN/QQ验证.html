@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QQ验证</title>
+</head>
+<body>
+<form action="">
+    <span>请输入QQ号码：</span>
+    <input type="text" value=""/>
+    <input type="button" value="判断"/>
+</form>
+<script>
+    var text=document.getElementsByTagName('input');
+    var num='';
+    text[1].onclick=function () {
+        num=text[0].value;
+        var sum=num.indexOf('.')+1;
+        var length=num.length;
+        if (num==''){
+            alert('QQ号码不能为空');
+        }else if (isNaN(num)){
+            alert('请输入数字');
+        }else if (num.charAt(0)==0){
+            alert('首字母不能为0');
+        /*}else if (parseInt(num) != parseFloat(num)){
+            alert('输入的数不能是小数');*/
+        }else if (sum>0){
+            alert('输入的数不能是小数');
+        }else if (length<5 ||length>10){
+            alert('输入的数字必须在5位以上，10位以内');
+        }else{
+            alert('恭喜亲登录成功');
+        }
+    }
+</script>
+</body>
+</html>

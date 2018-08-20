@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全局3、局部3</title>
+</head>
+<body>
+<script>
+    var a=1;
+    function fn1(a){
+        alert(a);
+        a=2;
+    }
+    fn1(a);//1
+    alert(a);//1
+</script>
+</body>
+</html>

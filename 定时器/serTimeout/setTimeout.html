@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            background: url("img/bc.jpg") no-repeat center 0; text-align: center;
+        }
+        img{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<img id="miaov" src="img/miaov.jpg" alt="广告"/>
+<script>
+    var miaov=document.getElementById('miaov');
+
+    setTimeout(function () {
+        miaov.style.display='inline-block';
+     setTimeout(function () {
+         miaov.style.display='none';
+     },3000)
+    },2000);
+</script>
+</body>
+</html>

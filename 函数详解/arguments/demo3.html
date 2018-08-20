@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 200px;
+            background: #ff9744 ;
+        }
+    </style>
+</head>
+<body>
+<input id="btn1" type="button" value="按钮"/>
+<div id="div1"></div>
+<script>
+/*$(function () {
+    $('btn1').onclick=function () {
+        alert($('div1').id);
+    }
+});*/
+var oDiv=document.getElementById('div1');
+var oBtn=document.getElementById('btn1');
+
+
+oBtn.onclick=function () {
+    oDiv.style.cssText='width:300px';
+    //alert(getComputedStyle(oDiv).width);//IE不兼容
+    //alert(oDiv.currentStyle.width);//  标准浏览器不兼容
+    /*if (obj.currentStyle) {
+      alert( obj.currentStyle[attr]);
+    }else{
+        alert( getComputedStyle(obj)[attr]);
+    }*/
+    //三木运算
+    //alert(getStyle(oDiv,'height'));
+    /*getComputedStyle（）、currentStyle获取到的是计算机（浏览器）计算后的样式
+    background 复合样式  （不要获取） backgroundColor 单一样式，不要用来做判断
+    不要获取未设置的样式。*/
+    alert(getStyle(oDiv,'backgroundColor'));
+}
+function getStyle(obj,attr){
+    return obj.currentStyle ? obj.currentStyle[attr]: getComputedStyle(obj)[attr];
+}
+
+
+</script>
+</body>
+</html>

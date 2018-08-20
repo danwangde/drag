@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>event事件对象</title>
+    <style>
+        #div1{
+            width:100px;height:100px;background: red;position: absolute;
+        }
+    </style>
+    <script>
+        /*
+event : 事件对象 , 当一个事件发生的时候，和当前这个对象发生的这个事件有关的一些详细的信息都会被临时保存到一个指定地方-event对象，供我们在需要的调用。飞机-黑匣子
+
+事件对象必须在一个事件调用的函数里面使用才有内容
+事件函数：事件调用的函数，一个函数是不是事件函数，不在定义的决定，而是取决于这个调用的时候
+
+兼容
+ie/chrome : event是一个内置全局对象
+标准下 : 事件对象是通过事件函数的第一个参数传入
+
+如果一个函数是被事件调用的那么，这个函数定义的第一个参数就是事件对象
+
+clientX[Y] : 当一个事件发生的时候，鼠标到页面可视区的距离
+*/
+
+        //alert( event );	//这里没有事件
+
+        /*document.onclick = function() {
+            alert(event);
+        };*/
+
+        window.onload=function () {
+            var oDiv=document.getElementById('div1');
+            document.onmousemove=function () {
+                var ev=ev || event;
+                var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
+                oDiv.style.left=ev.clientX+'px';
+                oDiv.style.top=ev.clientY+scrollTop+'px';
+            }
+        }
+
+    </script>
+</head>
+<body style="height:2000px;">
+<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多物体运动</title>
+    <style>
+        #div1{
+            width:100px;height:200px;background: red;position: absolute;top:100px;left:-100px;
+        }
+        #div2{
+            width:30px;height:60px;background: black;position: absolute;top:70px;right:-30px;
+            color:white;text-align: center;
+        }
+        img{
+            width:600px;height:400px;opacity:0.4;filter: alpha(opacity=40);margin-left: 200px;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var oDiv1=document.getElementById('div1');
+            var oDiv2=document.getElementById('div2');
+            var oImg=document.getElementsByTagName('img')[0];
+            oDiv1.onmouseover=function () {
+                doMove(oDiv1,'left',0,10);
+            }
+            oDiv1.onmouseout=function () {
+                doMove(oDiv1,'left',-100,-10);
+            }
+            oImg.onmouseover=function () {
+                doMove(this,'opacity',100,10);
+            }
+            oImg.onmouseout=function () {
+                doMove(this,'opacity',40,-10);
+            }
+            function doMove(obj,attr,target,speed) {
+                clearInterval(obj.iTimer);
+                var iCur=0;
+                obj.iTimer=setInterval(function () {
+                    if (attr=='opacity'){
+                        iCur=Math.round(css(obj,'opacity')*100);
+                    }else{
+                        iCur=parseInt(css(obj,attr));
+                    }
+
+                    if (iCur==target){
+                        clearInterval(obj.iTimer);
+                    }else {
+                        if (attr=='opacity'){
+                            obj.style.opacity=(iCur+speed)/100;
+                            obj.style.filter='alpha(opacity='+(iCur+speed)+')';
+                        } else{
+                            obj.style[attr]=iCur+speed+'px';
+                        }
+
+                    }
+                },30)
+
+            }
+            function css(obj,attr) {
+                if (obj.currentStyle){
+                    return obj.currentStyle[attr];
+                } else{
+                    return getComputedStyle(obj,false)[attr];
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+    <div id="div2">分享到</div>
+</div>
+<img src="img/timg%20(1).jpg" alt="">
+</body>
+</html>

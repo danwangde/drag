@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Aaa() {
+
+    }
+    Aaa.prototype.name='leo';
+    Aaa.prototype.age=20;
+    Aaa.prototype.constructor=Aaa;
+    for (var attr in Aaa.prototype){
+        alert(attr);
+    }
+</script>
+</body>
+</html>

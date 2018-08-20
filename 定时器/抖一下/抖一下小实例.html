@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抖一抖</title>
+    <script src="doMove.js"></script>
+    <style>
+       #img{
+           width: 200px;height: 200px;position: absolute;top: 60px;left: 500px;
+       }
+    </style>
+
+</head>
+<body>
+<img id="img" src="../img/3.png" alt="">
+<script>
+    var Img=document.getElementById('img');
+    Img.onclick=function(){
+        var poi=parseInt(getStyle(Img,'left'));
+        var num=0;
+        var timer=null;
+        var arr=[];
+        for (var i=20;i>0;i-=2){
+            arr.push(i,-i);//创建抖的频率数组
+        }
+        arr.push(0);
+        clearInterval(timer);
+        timer=setInterval(function () {
+            Img.style.left=poi+arr[num]+'px';
+            num++;
+            if (num==arr.length){
+                clearInterval(timer);
+            }
+        },80)
+    }
+
+</script>
+</body>
+</html>

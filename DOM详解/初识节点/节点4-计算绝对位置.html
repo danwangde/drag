@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节点4getBoundingClientRect()</title>
+    <style>
+        *{margin:0;padding: 0}
+        #div1,#div2{position: relative}
+        #div1{
+            background: red;width:100px;height:100px;left:50px;
+            border: 10px solid orange;
+        }
+        #div2{
+            background: yellow;width:60px;height:60px;left:30px;top:20px;border: 10px solid orange;
+        }
+        #div3{
+            background: pink;width:30px;height:30px;position: absolute;left:20px;top:20px;
+            border: 10px solid orange;transition: 1s left;
+        }
+        body{height: 2000px}
+    </style>
+</head>
+<body>
+<input type="button" value="点击就走"/>
+<div id="div1">
+    <div id="div2">
+        <div id="div3">
+
+        </div>
+    </div>
+</div>
+<script>
+    var div3=document.getElementById('div3');
+    var btn=document.getElementsByTagName('input')[0];
+    var left=0;
+    btn.onclick=function () {
+       /* getBoundingClientRect(返回值为一个对象)
+        获取某个元素的信息（高版本：left,top,bottom,right,width,height.）
+        相对于浏览器可是区域
+        注意:获取的值是会根据滚动条变化的。
+        */
+        div3.style.left=-(div3.getBoundingClientRect().left-div3.offsetLeft)+'px';
+        console.log(div3.getBoundingClientRect().top);
+    }
+
+
+</script>
+</body>
+</html>

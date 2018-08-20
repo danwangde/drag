@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义右键菜单</title>
+    <style>
+        ul{
+            padding:0;margin:0;
+        }
+        li{
+            list-style: none;
+        }
+        #div1{
+            width:100px;height:200px;border: 1px solid red;display: none;position: absolute;
+        }
+        #div1 li{
+            height:38px;margin-bottom: 2px;background: pink;color: white;text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <ul>
+        <li>我</li>
+        <li>爱</li>
+        <li>你</li>
+        <li>光</li>
+        <li>田</li>
+    </ul>
+</div>
+<script>
+    var oDiv=document.getElementById('div1');
+    var li=document.getElementsByTagName('li');
+    document.oncontextmenu=function (ev) {
+        var ev=ev || event;
+        oDiv.style.display='block';
+        oDiv.style.left=ev.clientX+'px';
+        oDiv.style.top=ev.clientY+'px';
+        return false;
+    }
+    li[0].onclick=function (ev) {
+        var ev=ev || event;
+        this.style.background='red';
+        ev.cancelBubble=true;
+    }
+    document.onclick=function () {
+        oDiv.style.display='';
+    }
+</script>
+</body>
+</html>

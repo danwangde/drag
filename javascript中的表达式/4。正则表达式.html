@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>敏感词过滤</title>
+</head>
+<body>
+替换前：<br>
+<textarea></textarea>
+<br>
+替换后：<br>
+<textarea></textarea>
+<br>
+<input id="btn" type="button" value="替换">
+<script>
+    var aT=document.getElementsByTagName('textarea');
+    var oBtn=document.getElementById('btn');
+    var re=/中国|军队|是人民的/g;
+    oBtn.onclick=function () {
+        aT[1].value=aT[0].value.replace(re,function (str) {
+            var result='';
+            for (var i=0;i<str.length;i++){
+                result+='*';
+            }
+            return result;
+        })
+    }
+</script>
+</body>
+</html>

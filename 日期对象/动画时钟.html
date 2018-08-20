@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画时钟</title>
+    <style>
+        /*.clearfix:after{
+            content: '';
+            display: block;
+            clear: both;
+        }*/
+        body{
+            margin: 0;}
+        ul{
+            margin: 0;padding:0;list-style: none;overflow: hidden;
+        }
+        li{
+            float: left;
+            width: 120px;height:170px;position: relative;
+        }
+        div{
+            position: absolute;width:120px;height:340px;top: 0px;
+        }
+        img{
+            vertical-align: top;width: 120px;height:170px;border: none;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var divs=document.getElementsByTagName('div');
+            //var imgs=document.querySelectorAll('li>img'); li下面的img
+            var img1=document.getElementById('img1');
+            var img2=document.getElementById('img2');
+            var arr=['img/colon.JPG','img/colon1.JPG'];
+            var num=0;
+           setInterval(function (){
+               time();
+               for (var i=0;i<arr.length;i++){
+                   img1.src='img/colon1.jPG';
+                   img2.src='img/colon1.jPG';
+               }
+               setTimeout(function(){
+                   for(var i=0;i<arr.length;i++){
+                       img1.src='img/colon.jPG';
+                       img2.src='img/colon.jPG';
+                   }
+               },500)
+
+           }, 1000);
+           time();
+            function time() {
+                var date=new Date();
+                var hour=date.getHours();
+                var minute=date.getMinutes();
+                var second=date.getSeconds();
+                var str='';
+                str= reset(hour)+reset(minute)+reset(second);
+                for (var i=0;i<str.length;i++){
+                    divs[i].index=-1;
+                    var Imgs=divs[i].getElementsByTagName('img');
+                    Imgs[1].src='img/'+str.charAt(i)+'.JPG';
+                    Imgs[0].src='img/'+str.charAt(i)+'.JPG';
+                    move(divs[i],'top',17,-170,function () {
+                        move(divs[i],'top',17,0);
+                    })
+                }
+            }
+
+            function reset(n) {
+                return  n<10? '0'+n:''+n;
+            }
+            function move(obj,attr,dir,target,endFn){
+               obj.timer=setInterval(function () {
+                   dir=parseInt(getStyle(obj,attr))<target?dir:-dir;
+                   clearInterval(obj.timer);
+                    var speed=parseInt(getStyle(obj,attr))+dir;
+                    if (speed>target && dir>0 ||speed<target && dir<0){//往下(上)跑
+                        speed=target;
+                    }
+                    obj.style[attr]=speed+'px';
+                    if (speed===target){
+                        clearInterval(obj.timer);
+                        endFn &&  endFn();
+                    }
+                },100)
+            }
+            function getStyle(obj,attr) {
+                return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+            }
+        }
+    </script>
+</head>
+<body>
+<ul>
+    <li>
+        <div>
+            <img src="img/0.JPG" alt="">
+            <img src="img/0.JPG" alt="">
+        </div>
+    </li>
+    <li>
+        <div>
+            <img src="img/0.JPG" alt="">
+            <img src="img/0.JPG" alt="">
+        </div>
+    </li>
+    <li><img id="img1" src="img/colon.JPG" alt=""></li>
+    <li>
+        <div>
+            <img src="img/0.JPG" alt="">
+            <img src="img/0.JPG" alt="">
+        </div>
+    </li>
+    <li>
+        <div>
+            <img src="img/0.JPG" alt="">
+            <img src="img/0.JPG" alt="">
+        </div>
+    </li>
+    <li><img id="img2" src="img/colon.JPG" alt=""></li>
+    <li>
+        <div>
+            <img src="img/0.JPG" alt="">
+            <img src="img/0.JPG" alt="">
+        </div>
+    </li>
+    <li>
+        <div>
+            <img src="img/0.JPG" alt="">
+            <img src="img/0.JPG" alt="">
+        </div>
+    </li>
+</ul>
+</body>
+</html>

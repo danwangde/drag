@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>键盘事件</title>
+    <style>
+        #div1{
+            width:100px;height:100px;background: pink;border: 1px solid darkslateblue;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+
+</div>
+<script>
+    document.onkeydown=function (ev) {
+        document.querySelector('#div1').style.background='red';
+        var ev=ev ||event;
+        //alert(ev.ctrlKey);//ctrl键按下的时候返回true
+    }
+    document.onkeyup=function () {
+        document.querySelector('#div1').style.background='';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画时钟简易版</title>
+    <style>
+        .clearfix:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        ul{
+            margin: 0;padding:0;list-style: none;padding-left: 180px;
+        }
+        li{
+            float: left;
+            width: 120px;height:170px;position: relative;
+        }
+        img{
+            vertical-align: top;width: 120px;height:170px;border: none;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var divs=document.getElementsByTagName('div');
+            //var imgs=document.querySelectorAll('li>img'); li下面的img
+            var img1=document.getElementById('img1');
+            var img2=document.getElementById('img2');
+            var arr=['img/colon.JPG','img/colon1.JPG'];
+            setInterval(function (){
+                time();
+                for (var i=0;i<arr.length;i++){
+                    img1.src='img/colon1.jPG';
+                    img2.src='img/colon1.jPG';
+                }
+                setTimeout(function(){
+                    for(var i=0;i<arr.length;i++){
+                        img1.src='img/colon.jPG';
+                        img2.src='img/colon.jPG';
+                    }
+                },500)
+
+            }, 1000);
+            time();
+            function time() {
+                var date=new Date();
+                var hour=date.getHours();
+                var minute=date.getMinutes();
+                var second=date.getSeconds();
+                var str='';
+                str= reset(hour)+reset(minute)+reset(second);
+                for (var i=0;i<str.length;i++){
+                    var Imgs=divs[i].getElementsByTagName('img');
+                    Imgs[0].src='img/'+str.charAt(i)+'.JPG';
+                }
+            }
+
+            function reset(n) {
+                return  n<10? '0'+n:''+n;
+            }
+        }
+    </script>
+</head>
+<body>
+<ul class="clearfix">
+    <li>
+        <div>
+            <img src="img/0.JPG" alt="">
+        </div>
+    </li>
+    <li>
+        <div>
+            <img src="img/0.JPG" alt="">
+        </div>
+    </li>
+    <li><img id="img1" src="img/colon.JPG" alt=""></li>
+    <li>
+        <div>
+            <img src="img/0.JPG" alt="">
+        </div>
+    </li>
+    <li>
+        <div>
+            <img src="img/0.JPG" alt="">
+        </div>
+    </li>
+    <li><img id="img2" src="img/colon.JPG" alt=""></li>
+    <li>
+        <div>
+            <img src="img/0.JPG" alt="">
+        </div>
+    </li>
+    <li>
+        <div>
+            <img src="img/0.JPG" alt="">
+        </div>
+    </li>
+</ul>
+</body>
+</html>

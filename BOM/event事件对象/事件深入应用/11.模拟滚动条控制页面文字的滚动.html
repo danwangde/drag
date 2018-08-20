@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟滚动条控制其他元素的变化
+    </title>
+    <style>
+        #div1{
+            width:30px;height:600px;background: black;position: absolute;
+            left:10px;top:10px;
+        }
+        #div2{
+            width:30px;height:30px;background: red;position: absolute;
+            left:0;top:0;
+        }
+        #div3{
+            width:498px;height:498px;border: 1px solid green;position:absolute;top:40px;left:50px;
+            background: papayawhip;
+        }
+        #div4{
+            position: absolute;left:0;top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <div id="div2"></div>
+</div>
+<div id="div3">
+    <div id="div4">
+        妙味课堂
+        妙味课堂是国内资深的前端开发培训机构,妙味课堂拥有系统的 JavaScript、HTML5、CSS3、移动开发、Node、webpack、Vue、React、Angular 等课程,并录制成最系统的前端...
+        www.miaov.com/  - 百度快照 - 90%好评
+        妙味茶馆
+        2016年1月31日 - 妙味课堂是一支独具特色的IT培训团队,妙味反对传统IT教
+        jquery源码分析
+        为了帮助朋友们更轻松的学习研究JQ源码,妙味课堂特地为朋友们录制了这套
+        关于我们-妙味课堂www.miaov.com
+        妙味课堂是国内资深的前端开发培训机构,妙味课堂拥有系统的 JavaScript、HTML5、CSS3、移动开发、Node、webpack...
+        www.miaov.com/index.ph...  - 百度快照
+        妙味课程-妙味课堂www.miaov.com
+        妙味课堂是国内资深的前端开发培训机构,妙味课堂拥有系统的 JavaScript、HTML5、CSS3、移动开发、Node、webpack、Vue、React、Angular 等课程,并录制成最系统的前端...
+        www.miaov.com/index.ph...  - 百度快照
+        为您推荐：妙味课堂全套教程2016妙味课堂视频 百度云妙味课堂怎么样 知乎
+        学习首页 - 妙味课堂
+        都是妙味课堂根据实体班的内容精心录制而成,目前已成为行业内系统学习前端开发最权威的视频学习资料库。 技术交流 QQ 群:203404514 《ECMAScript异步编程》公开课 5...
+        https://study.miaov.com/  - 百度快照
+        妙味课堂_百度百科
+        妙味课堂是北京妙味趣学信息技术有限公司旗下的IT前端培训品牌，妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法...
+
+        妙味讲师 培训方式 妙味培训理念 妙味课堂大事记
+
+        baike.baidu.com/
+
+        妙味课堂-JavaScript基础_腾讯课堂
+        妙味图书《前端HTML+CSS修炼之道(视频同步+直播)》正式在京东发售:这是一次诚挚的图书推荐,推荐的理由不仅仅因为这是妙味课堂出品的第一本书,更重要的原因是:这...
+        https://ke.qq.com/course/169...  - 百度快照
+        求妙味课堂的全套的js视频教程,谢谢了_百度知道
+        2个回答 - 最新回答: 2018年03月31日 - 540人觉得有用
+
+        [专业]答案:妙味课堂》全套的js视频教程有: 1.初级http://pan.baidu.com/s/1hqyEjJ2 2.中级http://pan.baidu.com/s/1pJ3P8uf 3.高级http://pan.baidu...
+        更多关于妙味课堂的问题>>
+        https://zhidao.baidu.com/quest...  - 百度快照
+        妙味课堂 “全栈 web 前端工程师” 远程就业班-妙味新闻-妙味课堂...
+</div>
+<script>
+    var oDiv1=document.getElementById('div1');
+    var oDiv2=document.getElementById('div2');
+    var oDiv3=document.getElementById('div3');
+    var oDiv4=document.getElementById('div4');
+    var maxY=oDiv1.offsetHeight-oDiv2.offsetHeight;
+
+    oDiv2.onmousedown=function (ev) {
+        var ev=ev ||event;
+        var disY=ev.clientY-this.offsetTop;
+        document.onmousemove=function (ev) {
+            var ev=ev||event;
+            var Y=ev.clientY-disY;
+            if ( Y<0 ){
+                Y=0;
+            }else if(Y>maxY){
+                Y=maxY;
+            }
+            oDiv2.style.top=Y+'px';
+            var iScale=Y/maxY;
+            oDiv4.style.top=(oDiv3.clientHeight-oDiv4.offsetHeight)*iScale+'px';
+        }
+        document.onmouseup=function () {
+            document.onmousemove=document.onmouseup=null;
+        }
+        return false;
+    }
+</script>
+</body>
+</html>

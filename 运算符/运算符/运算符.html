@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function(){
+            var aLi=document.getElementsByTagName('li');
+            var arr=['red','yellow','blue'];
+            var str='';
+
+            for (var i=0;i<aLi.length;i++){
+                aLi[i].index=i;
+                aLi[i].onoff=true;
+                aLi[i].style.background=arr[i%arr.length];
+                /* aLi[i].onmousemove=function () {
+                     this.style.background='gray';
+                 }*/
+                //鼠标移开颜色变成原来的样子：
+                //①用for遍历所有li
+                /* aLi[i].onmouseout=function () {
+                     for (var i=0;i<aLi.length;i++){
+                         aLi[i].style.background=arr[i%arr.length];
+                     }
+
+
+                 }*/
+
+                //②添加自定义索引值
+                /*aLi[i].onmouseout=function () {
+                    this.style.background=arr[this.index%arr.length];
+                }*/
+                //③先存起来
+                aLi[i].onclick=function (){
+                    if (this.onoff){
+                        for (var i=0;i<aLi.length;i++){
+                            //点击的时候先存颜色，如果开关为真，所有颜色为初始值，
+                            str=this.style.background;
+                            aLi[i].style.background=arr[i%arr.length];
+                        }
+                        this.style.background='black';//当前点击的这个颜色为黑色。
+                    }else {
+                        this.style.background=str;//如果开关为假，当前颜色为初始值，
+                    }
+                    this.onoff=!this.onoff;//每次点击将开关变为假
+
+
+
+
+                }
+                aLi[i].onmouseover=function () {
+                    //str=this.style.background;//鼠标移入，先存颜色
+                    this.style.background='gray';
+                }
+                aLi[i].onmouseout=function () {
+                    this.style.background='black';//鼠标移开，还回去。
+                }
+            }
+        }
+
+    </script>
+    <style>
+        li{
+            list-style: none;
+            height: 20px;
+            margin-bottom: 5px;
+        }
+        .active{
+            background: black;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+</body>
+</html>

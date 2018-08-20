@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>isNaN</title>
+</head>
+<body>
+<input type="text">
+<input type="button" value="判断输入的内容的类型"/>
+<script>
+    var input=document.getElementsByTagName('input');
+    var str='';
+    input[1].onclick=function () {
+        str=input[0].value;
+        if (str==''){
+            alert('请输入点内容吧！');
+        }
+        else if(isNaN(str)) {
+            alert(str+'不是数字');
+        }else {
+            alert(str+'是数字');
+        }
+
+    }
+</script>
+</body>
+</html>

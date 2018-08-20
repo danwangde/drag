@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全局2、局部2</title>
+</head>
+<body>
+<script>
+    var a=1;
+    function fn1(){
+        alert(a);//由里到外
+         a=2;//通过作用域链找到全局的a改变其值为2
+        //如果函数里面没有用var  这个变量就是一个全局变量。就近原则找a  如果函数里面有参数a就是这个a
+    }
+    fn1();//1
+    alert(a);//2
+</script>
+</body>
+</html>

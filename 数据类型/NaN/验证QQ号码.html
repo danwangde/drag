@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+window.onload = function (){
+
+	var aIn = document.getElementsByTagName('input');
+	var str = '';
+
+	aIn[1].onclick = function (){
+		str = aIn[0].value;  //  str 是个字符串，，如果可以转换成数字，就是对的，
+        var y=str.indexOf('.')+1;
+
+		if( str == ''){
+			alert( '您输入的是空的，请输入您的QQ号码' );
+
+		}else if( isNaN( str ) ){
+			// Number( str ) 转换后是NaN  就是true
+			alert( '您输入的不是数字，请输入正确的QQ号码' );
+
+		}else if( str.charAt(0) == 0 ){
+			alert( '首字母不能是0或者空格' );
+            //else if( parseInt( str ) != parseFloat( str ) ){
+		}else if(y>0 ){
+			alert( 'QQ号码不能是小数' ); 
+		}else if( str.length < 5 ){
+			alert( '您输入的数字不够5位数，必须是5位数字以上，10位数字以内' );
+		}else if( str.length > 11 ){
+			alert( '您输入的数字超过11位，必须是5位数字以上，10位数字以内' );
+		}
+
+		//  重新写一遍
+		else{
+			alert('恭喜亲登录成功');
+		}
+	};
+
+
+
+};	
+
+</script>
+</head>
+
+<body>
+
+请输入QQ号码：<input type="text" />
+<input type="button" value="确定" /><br />
+1、有没有输入<br />
+2、输入的是不是数字<br />
+3、不能有0在前面<br />
+4、不能是小数<br />
+5、输入的数字必须在5位以上、10位以内<br />
+
+</body>
+</html>

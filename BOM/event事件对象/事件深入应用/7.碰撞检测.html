@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>碰撞检测</title>
+    <style>
+        #div1{
+            width:100px;height:100px;background: red;position: absolute;z-index: 3;
+            font-size: 12px;text-align: center;line-height: 100px;color:white;
+        }
+        img{
+            position: absolute;border: none;vertical-align: top;width:500px;height:300px;top:150px;
+            left:500px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">我要靠近你</div>
+<img src="img/meimei.jpg" alt=""><!--
+<img src="img/xiao1.jpg" alt="">
+<img src="img/xiaomei.jpg" alt="">
+<img src="img/lala.jpg" alt="">-->
+<script>
+
+    var oDiv=document.getElementById('div1');
+    var img=document.getElementsByTagName('img')[0];
+
+    drag(oDiv);
+    drag(img);
+
+
+    function drag(obj){
+        obj.onmousedown=function (ev) {
+            var ev=ev || event;
+            var X=ev.clientX-this.offsetLeft;
+            var Y =ev.clientY-this.offsetTop;
+
+            if (obj.setCapture){
+                obj.setCapture();
+            }
+            document.onmousemove=function (ev) {
+                var ev=ev || event;
+                var L=ev.clientX-X;
+                var T=ev.clientY-Y;
+
+                var L1=L;
+                var R1=L+obj.offsetWidth;
+                var T1=T;
+                var B1=T+obj.offsetHeight;
+
+                var L2=img.offsetLeft;
+                var R2=L2+img.offsetWidth;
+                var T2=img.offsetTop;
+                var B2=T2+img.offsetHeight;
+
+                if (R1<L2 || L1>R2 || B1<T2 || T1>B2){
+                    img.src='img/meimei.jpg';
+                }else{
+                    img.src='img/xiaomei.jpg';
+                }
+
+                obj.style.left=L+'px';
+                obj.style.top=T+'px';
+            }
+            document.onmouseup=function () {
+                document.onmousemove=document.onmouseup=null;
+                //释放全局捕获releaseCapture（）
+                if (obj.releaseCapture){
+                    obj.releaseCapture();
+                }
+            }
+            return false;
+        }
+    }
+
+
+</script>
+</body>
+</html>

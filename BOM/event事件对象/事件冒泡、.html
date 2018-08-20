@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件冒泡</title>
+    <style>
+        div{padding: 40px;}
+        #div1{background: red;}
+        #div2{background: pink;}
+        #div3{background: blue;}
+    </style>
+</head>
+<body>
+<div id="div1">
+    <div id="div2">
+        <div id="div3">
+
+        </div>
+    </div>
+</div>
+<script>
+    /*事件冒泡：
+    * 当一个元素接收到事件的时候，会把他接收到的所有事件传播给他的父级，一直到顶层window。->事件冒泡机制 */
+    var oDiv1=document.getElementById('div1');
+    var oDiv2=document.getElementById('div2');
+    var oDiv3=document.getElementById('div3');
+    
+    function  fn1() {
+        alert(this.id);
+    }
+    //事件函数绑定
+    oDiv1.onclick=fn1;//告诉div1，如果他接收到了一个点击事件，那么他就去执行fn1.
+    //oDiv2.onclick=fn1;
+    oDiv3.onclick=fn1;
+
+</script>
+</body>
+</html>

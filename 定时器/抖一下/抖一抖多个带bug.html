@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bug</title>
+    <script src="doMove.js"></script>
+    <style>
+        img{
+            width: 100px;height: 100px;position: absolute;top: 200px;
+        }
+    </style>
+
+</head>
+<body>
+<script>
+    var aImg=document.getElementsByTagName('img');
+    var arrSrc=['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg','img/6.jpg','img/7.jpg','img/8.jpg'];
+
+    for (var i=0;i<arrSrc.length;i++){
+        document.body.innerHTML+='<img style="left: '+(40+i*120)+'px" src="'+arrSrc[i]+'"/>';
+    }
+    for (var i=0;i<arrSrc.length;i++){
+        aImg[i].onmouseover=function(){
+            var that = this;
+            shake(that,'left',function(){
+                shake(that,'top',)
+            });
+
+        }
+    }
+
+
+    function shake(obj,attr,endFn){
+        var poi=parseInt(getStyle(obj,attr));
+        var num=0;
+        var arr=[];
+        for (var i=20;i>0;i-=2){
+            arr.push(i,-i);//创建抖的频率数组
+        }
+        arr.push(0);
+        clearInterval(obj.shake);
+        obj.shake=setInterval(function () {
+            obj.style[attr]=poi+arr[num]+'px';
+            num++;
+            if (num===arr.length){
+                clearInterval(obj.shake);
+                endFn && endFn();
+            }
+
+        },80)
+    }
+</script>
+</body>
+</html>

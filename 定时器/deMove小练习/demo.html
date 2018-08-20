@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片往下掉</title>
+    <script src="doMove.js"></script>
+    <script>
+        window.onload=function(){
+            var str='';
+            var len=13;
+            var timer=null;
+            var num=0;
+            var onOff=true;
+            var aImg=document.getElementsByTagName('img');
+            var arrImg=['img/1.jpeg','img/2.jpeg','img/3.jpeg','img/4.jpeg','img/5.jpeg','img/6.jpeg', 'img/7.jpeg',
+                'img/8.jpeg','img/9.jpeg','img/10.jpeg','img/11.jpeg','img/12.jpeg','img/13.jpeg']
+            for (var i=0;i<len;i++){
+                str+='<img src="'+arrImg[i]+'" style="width: 80px;height: 80px;background: red;' +
+                    'position: absolute;top: 0;left:'+i*90+'px";/>'
+            }
+            document.body.innerHTML=str;
+            document.onclick=function() {
+                clearInterval(timer);
+                if (onOff) {
+                    timer = setInterval(function () {
+
+                        doMove(aImg[num], 'top', 23, 500,function(){
+                            if(parseInt(getStyle(aImg[len-1],'top')) == 500) {
+                                //当最后一个img的top值为500px时，开关为假，num=0.
+                                onOff = false;
+                                num = 0;
+                            }
+                        });
+                        num++;
+                        if (num === len) {
+                            clearInterval(timer);
+                        }
+                    }, 150)
+                }
+
+                else {
+                    timer = setInterval(function () {
+                        doMove(aImg[num], 'top', 23, 0,function () {
+                            if(parseInt(getStyle(aImg[len-1],'top')) == 0) {
+                                onOff = true;
+                                num = 0;
+                            }
+                        });
+                        num++;
+                        if (num === len) {
+                            clearInterval(timer);
+                        }
+                    }, 150)
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

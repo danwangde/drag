@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽的封装</title>
+    <style>
+        #div1{
+            width:100px;height:100px;background: red;position: absolute;
+        }
+        img{
+            position: absolute;border: none;vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<img src="img/meimei.jpg" alt="">
+<script>
+   
+    var oDiv=document.getElementById('div1');
+    var img=document.getElementsByTagName('img')[0];
+
+    drag(oDiv);
+    drag(img);
+    function drag(obj){
+        obj.onmousedown=function (ev) {
+            var ev=ev || event;
+            var X=ev.clientX-this.offsetLeft;
+            var Y =ev.clientY-this.offsetTop;
+
+            if (obj.setCapture){
+                obj.setCapture();
+            }
+            document.onmousemove=function (ev) {
+                var ev=ev || event;
+                obj.style.left=ev.clientX-X+'px';
+                obj.style.top=ev.clientY-Y+'px';
+            }
+            document.onmouseup=function () {
+                document.onmousemove=document.onmouseup=null;
+                //释放全局捕获releaseCapture（）
+                if (obj.releaseCapture){
+                    obj.releaseCapture();
+                }
+            }
+            return false;
+        }
+    }
+
+
+</script>
+</body>
+</html>

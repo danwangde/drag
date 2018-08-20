@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p></p>
+<li style="list-style: none;"></li>
+<p></p>
+<p></p>
+<script>
+    window.onload=function(){
+
+        var max=0;
+        var arr1=[];
+        var arr2=[];
+        var arr = ['100px', 'abc' - 6, [], -98765, 34, -2, 0, '300',, function() {
+            alert(1);
+        }, null, document, [], true, '200px' - 30, '23.45元', 5, Number('abc'), function() {
+            alert(3);
+        }, 'xyz' - 90];
+        for (var i=0;i<arr.length;i++){
+            //找到里面所有的数字：-98765，34，-2，0，5
+            if (typeof arr[i] == "number") {
+                if(arr[i]===arr[i]) {
+                    document.getElementsByTagName('p')[0].innerHTML += arr[i] + ',';
+                }else {
+                    document.getElementsByTagName('p')[2].innerHTML +=i+',';
+                }
+            }
+            //找到可以转成数字的：'100px',-98765,34,-2,0,'300',5
+            if (parseFloat(arr[i])||arr[i]==0) {
+                arr1.push(arr[i]);
+
+                document.getElementsByTagName('li')[0].innerHTML = arr1;
+            }
+        }
+        for (var i=0;i<arr1.length;i++) {
+            //把转成数字以后，最大值判断出来：300
+            arr2.push(parseInt(arr1[i]));
+            if (arr2[i] > max) {
+                max= arr2[i];//如果当前值大于初始值，则令最大值=当前值。
+            }
+            document.getElementsByTagName('p')[1].innerHTML=max;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节点3</title>
+    <style>
+        *{margin:0;padding: 0}
+        #div1,#div2{position: relative}
+        #div1{
+            background: red;width:100px;height:100px;left:50px;
+            border: 10px solid orange;
+        }
+        #div2{
+            background: yellow;width:60px;height:60px;left:30px;top:20px;border: 10px solid orange;
+        }
+        #div3{
+            background: pink;width:30px;height:30px;position: absolute;left:20px;top:20px;
+            border: 10px solid orange;transition: 1s left;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="点击就走"/>
+<div id="div1">
+    <div id="div2">
+        <div id="div3">
+
+        </div>
+    </div>
+</div>
+<script>
+    var div3=document.getElementById('div3');
+    var btn=document.getElementsByTagName('input')[0];
+    var elem=div3;
+    var left=0;
+    btn.onclick=function () {
+        while(elem){//如果有这个元素就走循环。
+            left+=elem.offsetLeft+parseInt(getComputedStyle(elem).borderLeftWidth);
+            elem=elem.offsetParent;//第一次计算之后，elem就变成了div2......
+        }
+        left-=parseInt(getComputedStyle(div3).borderLeftWidth);
+        div3.style.left=-(left-div3.offsetLeft)+'px';
+    }
+
+    /*function getStyle(obj,attr) {
+        return obj.currentStyle[attr]?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+    }
+*/
+</script>
+</body>
+</html>

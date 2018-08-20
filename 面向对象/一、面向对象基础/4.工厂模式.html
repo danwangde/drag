@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function createName(name) {
+        this.name=name;
+        this.showName=function () {
+            alert(this.name)
+        }
+    }
+
+    var p1=new createName('小明')；
+    p1.showName(); //小明
+
+    var p1=new createName('小强')；
+    p1.showName(); //小强
+</script>
+</body>
+</html>

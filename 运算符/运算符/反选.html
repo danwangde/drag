@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>反选</title>
+    <style>
+        li{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<input type="checkbox">
+<ul>
+    <li><input type="checkbox"></li>
+    <li><input type="checkbox"></li>
+    <li><input type="checkbox"></li>
+    <li><input type="checkbox"></li>
+    <li><input type="checkbox"></li>
+</ul>
+
+<script>
+    var aInp=document.getElementsByTagName('input');
+    //oInp[1].checked=true;//此方法来选中当前的复选按钮
+    aInp[0].onclick=function() {
+        for (var i = 1; i < aInp.length; i++) {
+            if (this.checked) {
+                //aInp[i].checked=!aInp[i].checked;//和下面的if语句等价
+                aInp[i].checked = true;
+
+            } else {
+                aInp[i].checked = false;
+            }
+        }
+
+    }
+    for (var i=1;i<aInp.length;i++){
+        aInp[i].onclick=function () {
+            if (this.checked) {
+                for (var i=1;i<aInp.length;i++) {
+                    if (aInp[i].checked == false) {
+                        aInp[0].checked = false;
+                        return;
+                    }
+                }
+            aInp[0].checked=true;
+            }
+            else{
+                aInp[0].checked=false;
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

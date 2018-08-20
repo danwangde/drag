@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>return详解</title>
+</head>
+<body>
+<script>
+   /* function fn1() {
+       return '100';
+    }
+    alert(typeof fn1());//string*/
+
+    function fn2(a) {
+        return function fn3(b) {
+            alert(a+b);//我是注释！
+        }
+    }
+    fn2(10)(20);
+    alert(fn2());//弹出里面的函数
+</script>
+</body>
+</html>
