@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<p>
+请选择您喜欢的书：
+<input type="radio" name="book" onClick="bookhs();">我和狗狗一起活下去
+<input type="radio" name="book" onClick="bookhs();">灰霾来了怎么办
+</p>
+
+<div style="border:1px solid red;">
+  
+</div>
+<script>
+  function bookhs()
+  {
+	  //获得单选按钮的节点对象 
+	  var radEle=document.getElementsByName("book");//集合
+	  var bName=document.getElementsByTagName("div")[0];//div集合
+	  if(radEle[0].checked)
+	  {//第一个单选按钮选中 
+		 //创建一个img节点元素
+		 var img=document.createElement("img");//<img/>
+		 //添加属性
+		 img.setAttribute("src","images/dog.jpg");//<img  src="images/dog.jpg"/>
+		 //当前图片对象 内嵌入  div标记中，作为div 的子标记 
+		 bName.appendChild(img);//<div><img  src="images/dog.jpg"/></div>
+		 
+		  
+		  
+	  }
+	  else   if(radEle[1].checked)
+	  {//第二个单选按钮选中 
+		   //创建一个img节点元素
+		 var img=document.createElement("img");//<img/>
+		 //添加属性
+		 img.setAttribute("src","images/mai.jpg");//<img  src="images/dog.jpg"/>
+		 img.setAttribute("title","鼠标滑过戴口罩");
+		 //添加点击事件
+		 img.setAttribute("onClick","copyNode();");
+		 //<img  src="images/dog.jpg" onclick="copyNode()"/>
+		 //当前图片对象 内嵌入  div标记中，作为div 的子标记 
+		 bName.appendChild(img);//<div><img  src="images/dog.jpg"/></div>
+		 
+		  
+	  }
+	  
+	  
+	  
+	  
+  }
+  function copyNode()
+  {
+	//复制节点
+	
+	var bName=document.getElementsByTagName("div")[0];
+	//var copy=bName.lastChild.cloneNode(false);//false只复制图片和属性 
+	var copy=bName.cloneNode(true);//true将div标记本身属性和 子节点同时复制 
+	alert(copy.getAttribute("src"));
+	bName.insertBefore(copy,bName.firstChild);
+   //div              复制节点， div的第一个节点 	  
+	  
+	  
+	  
+  }
+
+</script>
+</body>
+</html>

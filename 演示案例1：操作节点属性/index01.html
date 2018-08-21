@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	.change{
+		color: red;
+	}
+	.change2{
+		color: green;
+	}
+</style>
+</head>
+	
+<body>
+<p>
+<b class="change">请选择喜欢的书籍：</b>
+<input type="radio" name="book" onClick="bookhs();">我和狗狗一起活下去
+<input type="radio" name="book" onClick="bookhs();">灰霾来了怎么办
+<div>
+<img src="" alt="" title="" id="imageid" onClick="imghs();">
+<span></span>
+</div>
+
+</p>
+<script>
+document.getElementsByTagName("b")[0].style.fontSize="24px";
+document.getElementsByTagName("b")[0].className="change2";
+  function bookhs(){
+	//1-获得单选按钮 节点对象 
+    var eleRadio=document.getElementsByName("book");
+	//获取图片的节点对象 
+	var imgObj=document.getElementById("imageid");
+ //2-判断 点击事件操作的节点对象 
+    if(eleRadio[0].checked)
+	{//点击第一个单选按钮
+		
+		imgObj.setAttribute("src","images/dog.jpg");
+		imgObj.setAttribute("alt","狗狗坚持下去");
+		imgObj.setAttribute("title","鼠标滑过显示的狗狗信息");
+		imgObj.nextElementSibling.innerHTML="<font color=red>我和狗狗一起活下去</font>";
+		
+	}
+	else if(eleRadio[1].checked)
+	{//第二个单选按钮
+		
+		imgObj.setAttribute("src","images/mai.jpg");
+		imgObj.setAttribute("alt","灰霾来了");
+		imgObj.setAttribute("title","鼠标滑过显示戴口罩");
+		imgObj.nextElementSibling.innerHTML="<font color=red>灰霾来了怎么办</font>";
+	}
+  }  
+  function imghs()
+  {
+	//获取img的alt属性值 	
+	var imgObj=document.getElementById("imageid");
+	var altAttr=imgObj.getAttribute("alt");
+	alert("图片的属性值为："+altAttr);  
+  }
+</script>
+</body>
+</html>
