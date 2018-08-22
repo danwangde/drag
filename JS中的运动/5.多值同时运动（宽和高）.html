@@ -28,6 +28,7 @@
                         //定时器每走一下，就要把要运动的属性推进一次
                         var iBtn=true;
                         for(var attr in json){
+                            //什么时候停止定时器？所有属性都运动到了目标点的时候。
                             var target=json[attr];
                             if (attr=='opacity'){
                                 iCur=Math.round(css(obj,'opacity')*100);
