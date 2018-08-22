@@ -37,6 +37,7 @@
                             }
 
                             if (iCur!=target){
+                                 //只要一个属性没到就为false
                                 iBtn=false;
                                 if (attr=='opacity'){
                                     obj.style.opacity=(iCur+speed)/100;
@@ -49,7 +50,7 @@
                             }
                         }
                         //在这里看所有的属性是不是都到了目标点
-                        if (iBtn) {
+                        if (iBtn) {//所有属性都到了
                             clearInterval(obj.iTimer);
                         }
 
